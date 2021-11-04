@@ -18,16 +18,16 @@ class MovieResponseManager {
     
     //default constructor
     init() {
-        print("Successfully Created API Manager")
+        //print("Successfully Created API Manager")
     }
     
     func getMovieSearch(queryString: String) async throws -> MovieSearchResponse {
-        print("Successfully Entered Search Function")
+        //print("Successfully Entered Search Function")
         // query url
         let url = "https://api.themoviedb.org/3/search/movie?api_key=" + self.apiKey! + "&language=en-US&query=" + queryString + "&page=1&include_adult=false"
-        print(url)
+        //print(url)
         guard let apiUrl = URL(string: url) else {
-            print("Error with URL")
+            //print("Error with URL")
             throw MovieResponseManagerError.invalidURL
         }
             // fetch data using URLSession
@@ -35,7 +35,7 @@ class MovieResponseManager {
             
             // parse returned api data
         let queryResult = try JSONDecoder().decode(MovieSearchResponse.self, from: data)
-        print(queryResult)
+      //  print(queryResult)
         return queryResult
         
     }
@@ -46,19 +46,20 @@ class MovieResponseManager {
             let movieResults = movieReponse.results
             return movieResults
         } catch {
-            print("Error with Movie Results Searching")
+           // print("Error with Movie Results Searching")
+            debugPrint(error)
             return []
         }
     }
     
     
     func getMovieDetail(movieId: Int) async throws -> IndividualMovieDetailResponse {
-        print("Successfully Entered Search Function")
+        //print("Successfully Entered Search Function")
         // query url
         let url = "https://api.themoviedb.org/3/movie/" + String(movieId) + "?api_key=" + self.apiKey! + "&language=en-US"
-        print(url)
+        //print(url)
         guard let apiUrl = URL(string: url) else {
-            print("Error with URL")
+           // print("Error with URL")
             throw MovieResponseManagerError.invalidURL
         }
             // fetch data using URLSession
@@ -66,7 +67,7 @@ class MovieResponseManager {
             
             // parse returned api data
         let queryResult = try JSONDecoder().decode(IndividualMovieDetailResponse.self, from: data)
-        print(queryResult)
+        //print(queryResult)
         return queryResult
         
     }
@@ -77,11 +78,77 @@ class MovieResponseManager {
             let movieResult = movieResponse
             return movieResult
         } catch {
-            print("Error with Movie Results Searching")
-            return IndividualMovieDetailResponse(adult: false, backdrop_path: nil, budget: -1, genres: [], homepage: nil, id: -1, imdb_id: -1, original_language: "", original_title: "", overview: nil, popularity: -1, poster_path: nil, production_companies: [], production_countries: [], release_date: "", revenue: -1, runtime: nil, spoken_languages: [], status: "", tagline: nil, title: "", video: false, vote_average: -1, vote_count: -1)
+            //print("Error with Movie Results Searching")
+            debugPrint(error)
+            return IndividualMovieDetailResponse()
+        }
+    }
+    
+    func getCreditsDetail(movieId: Int) async throws -> CastCrewResponse {
+        //print("Successfully Entered Search Function")
+        // query url
+        let url = "https://api.themoviedb.org/3/movie/" + String(movieId) + "/credits?api_key=" + self.apiKey! + "&language=en-US"
+       // print(url)
+        guard let apiUrl = URL(string: url) else {
+            //print("Error with URL")
+            throw MovieResponseManagerError.invalidURL
+        }
+            // fetch data using URLSession
+        let (data, _) = try await URLSession.shared.data(from: apiUrl)
+            
+            // parse returned api data
+        let queryResult = try JSONDecoder().decode(CastCrewResponse.self, from: data)
+       // print(queryResult)
+        return queryResult
+        
+    }
+    
+    func getCreditsDetailLoader(movieId: Int) async -> CastCrewResponse{
+        do {
+            let creditResponse = try await getCreditsDetail(movieId: movieId)
+            let creditResult = creditResponse
+            return creditResult
+        } catch {
+           // print("Error with Movie Results Searching")
+            debugPrint(error)
+            return CastCrewResponse()
+        }
+    }
+    
+    func getMovieReccomendations(movieId: Int) async throws -> MovieSearchResponse {
+        //print("Successfully Entered Search Function")
+        // query url
+        let url = "https://api.themoviedb.org/3/movie/" + String(movieId) + "/recommendations?api_key=" + self.apiKey! + "&language=en-US&page=1"
+       // print(url)
+        guard let apiUrl = URL(string: url) else {
+           // print("Error with URL")
+            throw MovieResponseManagerError.invalidURL
+        }
+            // fetch data using URLSession
+        let (data, _) = try await URLSession.shared.data(from: apiUrl)
+            
+            // parse returned api data
+        let queryResult = try JSONDecoder().decode(MovieSearchResponse.self, from: data)
+       // print(queryResult)
+        return queryResult
+        
+    }
+    
+    func getMovieReccomendationLoader(movieId: Int) async -> [IndividualMovieResponse] {
+        do {
+            let movieReponse = try await getMovieReccomendations(movieId: movieId)
+            let movieResults = movieReponse.results
+            return movieResults
+        } catch {
+            //print("Error with Movie Results Searching")
+            debugPrint(error)
+            return []
         }
     }
     
 }
+
+
+var requestManager = MovieResponseManager() 
 
 

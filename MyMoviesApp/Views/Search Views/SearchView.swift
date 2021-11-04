@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchView: View {
     
-    private var requestManager = MovieResponseManager()
     @State private var movies = [IndividualMovieResponse]()
     @State private var searchText = ""
     
@@ -17,17 +16,18 @@ struct SearchView: View {
         NavigationView {
             List {
                 ForEach(movies, id:\.id) { movie in
-                    NavigationLink(destination: Text(movie.original_title)) {
+                    NavigationLink(destination: MovieDetailsView(movieId: movie.id)) {
                         SearchRow(currentMovie: movie)
                     }
                 }
-            }
+            }.listStyle(GroupedListStyle())
             // handles search bar logic, search when entered name of movie
             .searchable(text: $searchText)
             .onSubmit(of: .search) {
                 Task {
-                    if !searchText.isEmpty && searchText.count > 3 {
-                        movies = await requestManager.getMovieSearchLoader(queryString: searchText)
+                    let searchString = searchText.replacingOccurrences(of: " ", with: "%20")
+                    if !searchString.isEmpty{
+                        movies = await requestManager.getMovieSearchLoader(queryString: searchString)
                     } else {
                         movies.removeAll()
                     }
