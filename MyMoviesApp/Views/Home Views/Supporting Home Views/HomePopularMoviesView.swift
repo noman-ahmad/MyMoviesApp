@@ -1,28 +1,28 @@
 //
-//  MovieReccomendationsView.swift
+//  HomePopularMoviesView.swift
 //  MyMoviesApp
 //
-//  Created by Noman Ahmad on 11/3/21.
+//  Created by Noman Ahmad on 11/7/21.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct MovieReccomendationsView: View {
+struct HomePopularMoviesView: View {
     
-    var recommended = [IndividualMovieResponse()]
+    var popularMovies = [IndividualMovieResponse()]
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(recommended, id: \.id) {
+                ForEach(popularMovies, id: \.id) {
                     movie in
                     if let poster_path = movie.poster_path {
                         NavigationLink(destination: MovieDetailsView(movieId: movie.id)) {
                                 let url = "https://image.tmdb.org/t/p/w200/" + poster_path
-                                KFImage(URL(string: url))
+                                    KFImage(URL(string: url))
                                         .resizable()
-                                .frame(width: 125, height: 175)
+                                        .frame(width: 100, height: 125)
                         }
                     }
                 }
@@ -31,8 +31,8 @@ struct MovieReccomendationsView: View {
     }
 }
 
-struct MovieReccomendationsView_Previews: PreviewProvider {
+struct HomePopularMoviesView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieReccomendationsView()
+        HomePopularMoviesView()
     }
 }

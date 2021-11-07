@@ -17,6 +17,7 @@ struct MovieDetailsView: View {
     @State private var movieReccomendations = [IndividualMovieResponse()]
     @State private var credits = CastCrewResponse()
     
+    
     var body: some View {
 
             List {
@@ -68,44 +69,44 @@ struct MovieDetailsView: View {
                     MovieReccomendationsView(recommended: movieReccomendations)
                 }
 //
-//                Section("Crew") {
-//                    if getCrew(forJob: "Director") != "Unknown"{
-//                        HStack {
-//                            Text("Director").font(.subheadline)
-//                            Spacer()
-//                            Text(getCrew(forJob: "Director")).font(.subheadline)
-//                        }
-//                    }
-//                    if getCrew(forJob: "Executive Producer") != "Unknown"{
-//                        HStack {
-//                            Text("Executive Producer").font(.subheadline)
-//                            Spacer()
-//                            Text(getCrew(forJob: "Executive Producer")).font(.subheadline)
-//                        }
-//                    }
-//                    if getCrew(forJob: "Original Music Composer") != "Unknown"{
-//                        HStack {
-//                            Text("Original Music").font(.subheadline)
-//                            Spacer()
-//                            Text(getCrew(forJob: "Original Music Composer")).font(.subheadline)
-//                        }
-//                    }
-//
-//
-//
-//                }
-//                Section("Cast") {
-//                    if let cast = getActors() {
-//                        ForEach(cast, id: \.order) {
-//                            cast in
-//                            HStack {
-//                                Text(cast.name).font(.subheadline)
-//                                Spacer()
-//                                Text(cast.character).font(.subheadline)
-//                            }
-//                        }
-//                    }
-//                }
+                Section("Crew") {
+                    if getCrew(forJob: "Director") != "Unknown"{
+                        HStack {
+                            Text("Director").font(.subheadline)
+                            Spacer()
+                            Text(getCrew(forJob: "Director")).font(.subheadline)
+                        }
+                    }
+                    if getCrew(forJob: "Executive Producer") != "Unknown"{
+                        HStack {
+                            Text("Executive Producer").font(.subheadline)
+                            Spacer()
+                            Text(getCrew(forJob: "Executive Producer")).font(.subheadline)
+                        }
+                    }
+                    if getCrew(forJob: "Original Music Composer") != "Unknown"{
+                        HStack {
+                            Text("Original Music").font(.subheadline)
+                            Spacer()
+                            Text(getCrew(forJob: "Original Music Composer")).font(.subheadline)
+                        }
+                    }
+
+
+
+                }
+                Section("Cast") {
+                    if let cast = getActors() {
+                        ForEach(cast, id: \.order) {
+                            cast in
+                            HStack {
+                                Text(cast.name).font(.subheadline)
+                                Spacer()
+                                Text(cast.character).font(.subheadline)
+                            }
+                        }
+                    }
+                }
 
             }.id(UUID()).listStyle(GroupedListStyle())
         .navigationBarTitleDisplayMode(.inline)

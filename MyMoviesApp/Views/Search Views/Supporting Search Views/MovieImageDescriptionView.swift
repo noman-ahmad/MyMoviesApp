@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct MovieImageDescriptionView: View {
     
@@ -17,16 +17,13 @@ struct MovieImageDescriptionView: View {
             Spacer()
             VStack {
                 if let poster_path = movieDetails.poster_path {
-                    let url = "https://image.tmdb.org/t/p/original/" + poster_path
-                    CachedAsyncImage(url: URL(string: url)) {
-                        image in image
-                            .resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }.frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
+                    let url = "https://image.tmdb.org/t/p/w200/" + poster_path
+                    KFImage(URL(string: url))
+                        .resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
                 } else {
                     Image("placeholder-poster").resizable().frame(width:150, height: 200)
                 }
+                //Image("placeholder-poster")
                 Spacer()
             }
             Spacer()
