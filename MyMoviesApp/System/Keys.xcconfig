@@ -1,0 +1,12 @@
+//
+//  Keys.xcconfig
+//  MyMoviesApp
+//
+//  Created by Noman Ahmad on 11/2/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+MOVIEDB_API_KEY = c62fc1b278b0679fad24e546228d77ce
+IMDB_API_KEY = k_c276wx6s
