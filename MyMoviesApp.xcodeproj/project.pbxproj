@@ -32,6 +32,8 @@
 		ED3DA7E02733231000948F94 /* MovieDetailsDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7DF2733231000948F94 /* MovieDetailsDescriptionView.swift */; };
 		ED3DA7E227332A1100948F94 /* MovieImageDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7E127332A1100948F94 /* MovieImageDescriptionView.swift */; };
 		ED3DA7E6273366A300948F94 /* MovieReccomendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7E5273366A300948F94 /* MovieReccomendationsView.swift */; };
+		EDEEF5E6273B4DC50021A1CE /* MovieSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEEF5E5273B4DC40021A1CE /* MovieSearchResults.swift */; };
+		EDEEF5EA273B503A0021A1CE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEEF5E9273B503A0021A1CE /* SearchViewModel.swift */; };
 		EDFF852D2735C38B00CE1540 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EDFF852C2735C38B00CE1540 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,8 @@
 		ED3DA7DF2733231000948F94 /* MovieDetailsDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsDescriptionView.swift; sourceTree = "<group>"; };
 		ED3DA7E127332A1100948F94 /* MovieImageDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageDescriptionView.swift; sourceTree = "<group>"; };
 		ED3DA7E5273366A300948F94 /* MovieReccomendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReccomendationsView.swift; sourceTree = "<group>"; };
+		EDEEF5E5273B4DC40021A1CE /* MovieSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchResults.swift; sourceTree = "<group>"; };
+		EDEEF5E9273B503A0021A1CE /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 				ED297EC62731FCA000C3448D /* Assets */,
 				ED297EBE2731CC3300C3448D /* Info.plist */,
 				ED297EBA2731CA1900C3448D /* System */,
+				EDEEF5E7273B4FC50021A1CE /* ViewModels */,
 				ED297EB92731C82400C3448D /* Models */,
 				ED297EAA2731C02B00C3448D /* Core Data */,
 				ED297EA92731C01600C3448D /* Views */,
@@ -258,6 +263,7 @@
 		ED3992A92732281200DC1E99 /* Main Models */ = {
 			isa = PBXGroup;
 			children = (
+				EDEEF5E5273B4DC40021A1CE /* MovieSearchResults.swift */,
 			);
 			path = "Main Models";
 			sourceTree = "<group>";
@@ -288,6 +294,22 @@
 				ED3DA7E5273366A300948F94 /* MovieReccomendationsView.swift */,
 			);
 			path = "Supporting Search Views";
+			sourceTree = "<group>";
+		};
+		EDEEF5E7273B4FC50021A1CE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EDEEF5E8273B50260021A1CE /* Search ViewModels */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EDEEF5E8273B50260021A1CE /* Search ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EDEEF5E9273B503A0021A1CE /* SearchViewModel.swift */,
+			);
+			path = "Search ViewModels";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEEF5EA273B503A0021A1CE /* SearchViewModel.swift in Sources */,
 				ED297EB62731C3F200C3448D /* LibraryView.swift in Sources */,
 				ED297EB82731C40500C3448D /* SettingsView.swift in Sources */,
 				ED3DA7E02733231000948F94 /* MovieDetailsDescriptionView.swift in Sources */,
@@ -445,6 +468,7 @@
 				ED221D6327391F210027B96B /* LibraryEditView.swift in Sources */,
 				ED297EB42731C3E500C3448D /* SearchView.swift in Sources */,
 				ED3DA7E6273366A300948F94 /* MovieReccomendationsView.swift in Sources */,
+				EDEEF5E6273B4DC50021A1CE /* MovieSearchResults.swift in Sources */,
 				ED3A97E0273861AB0092E7C3 /* HomePopularMoviesView.swift in Sources */,
 				ED297E7B2731BDBC00C3448D /* MyMoviesAppApp.swift in Sources */,
 			);

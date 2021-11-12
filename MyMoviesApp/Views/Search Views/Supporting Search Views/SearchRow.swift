@@ -7,42 +7,41 @@
 
 import SwiftUI
 import CachedAsyncImage
+import Kingfisher
 
 struct SearchRow: View {
     
-    var currentMovie : IndividualMovieResponse
+   var image_url = ""
+   var movie_name = ""
+   var movie_year = ""
+    
+    func formatYear(year: String) -> String {
+        let new_year = year.replacingOccurrences(of: "(", with: "")
+        let newest_year = new_year.replacingOccurrences(of: ")", with: "")
+        return newest_year
+    }
+    
     
     var body: some View {
-        HStack() {
+        HStack {
             VStack {
                 Spacer()
-                if let poster_path = currentMovie.poster_path {
-                    let url = "https://image.tmdb.org/t/p/original/" + poster_path
-                    CachedAsyncImage(url: URL(string: url)) {
-                        image in image
-                            .resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }.frame(width: 75, height: 100).background(Color.gray)
-                } else {
-                    Image("placeholder-poster").resizable().frame(width: 75, height: 100)
-                }
+                KFImage(URL(string: image_url)).resizable().frame(width: 75, height: 100).background(Color.gray)
                 Spacer()
             }
-            VStack(alignment: .leading){
-                Text(currentMovie.title).font(.caption)
-                if let release_date = currentMovie.release_date {
-                    Text(release_date.prefix(4)).foregroundColor(.gray).font(.caption2)
-                }
+            
+            VStack(alignment: .leading) {
+                Text(movie_name).font(.caption)
+                Text(formatYear(year:movie_year)).font(.caption2).foregroundColor(.gray)
                 Spacer()
-            } .padding(.top)
-            Spacer()
+            }.frame(height: 100)
+            
         }
     }
 }
 
 struct SearchRow_Previews: PreviewProvider {
     static var previews: some View {
-        SearchRow(currentMovie: IndividualMovieResponse())
+        SearchRow(image_url: "", movie_name: "", movie_year: "")
     }
 }
