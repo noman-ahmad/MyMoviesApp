@@ -9,30 +9,74 @@ import SwiftUI
 import Kingfisher
 
 struct MovieImageDescriptionView: View {
+
+    var moviePosterPath : String
     
-    var movieDetails : IndividualMovieDetailResponse
+    var movieRating : String
+    
+    var movieGenres : String
+    
+    var movieYear : String
+    
+    var movieRuntime : String
     
     var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                if let poster_path = movieDetails.poster_path {
-                    let url = "https://image.tmdb.org/t/p/w200/" + poster_path
-                    KFImage(URL(string: url))
-                        .resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
-                } else {
-                    Image("placeholder-poster").resizable().frame(width:150, height: 200)
+        VStack {
+            HStack {
+                Spacer()
+                VStack {
+                        if moviePosterPath != "" {
+                            KFImage(URL(string: moviePosterPath)).resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3)).scaledToFill()
+                        } else {
+                            Image("placeholder-poster").resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
+                        }
+                    if (movieRating == "ZeroRating") {
+                        ZeroRating().padding(.top)
+                        
+                    }else if (movieRating == "ZeroFiverating") {
+                        ZeroFiveRating().padding(.top)
+                    } else if (movieRating == "OneRating") {
+                        OneRating().padding(.top)
+                    } else if (movieRating == "OneFiveRating") {
+                        OneFiveRating().padding(.top)
+                    } else if (movieRating == "TwoRating") {
+                        TwoRating().padding(.top)
+                    } else if (movieRating == "TwoFiveRating") {
+                        TwoFiveRating().padding(.top)
+                    } else if (movieRating == "ThreeRating") {
+                        ThreeRating().padding(.top)
+                    } else if (movieRating == "ThreeFiveRating") {
+                        ThreeFiveRating().padding(.top)
+                    } else if (movieRating == "FourRating") {
+                        FourRating().padding(.top)
+                    } else if (movieRating == "FourFiveRating") {
+                        FourFiveRating().padding(.top)
+                    } else {
+                        FiveRating().padding(.top)
+                    }
+                    Spacer()
+                    HStack {
+                        if movieRuntime != "" {
+                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieGenres).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieRuntime).font(.caption2).foregroundColor(.secondary)
+                        } else {
+                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieGenres).font(.caption2).foregroundColor(.secondary)
+                        }
+                    }
                 }
-                //Image("placeholder-poster")
                 Spacer()
             }
-            Spacer()
         }
     }
 }
 
 struct MovieImageDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieImageDescriptionView(movieDetails: IndividualMovieDetailResponse())
+        MovieImageDescriptionView(moviePosterPath: "", movieRating: "", movieGenres: "", movieYear: "", movieRuntime: "")
     }
 }

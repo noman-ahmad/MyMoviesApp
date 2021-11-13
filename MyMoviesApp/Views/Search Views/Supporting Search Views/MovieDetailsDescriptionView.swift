@@ -10,21 +10,15 @@ import CachedAsyncImage
 
 struct MovieDetailsDescriptionView: View {
     
-    var movieDetails : IndividualMovieDetailResponse
+
     
     var body: some View {
-        HStack {
-            if let description = movieDetails.overview {
-                Text(description).font(.caption).multilineTextAlignment(.leading)
-            } else {
-                Text("Description Not Found")
-            }
-        }.padding(.top).padding(.bottom)
+        Text("Placeholder")
     }
 }
 
 struct MovieDetailsDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsDescriptionView(movieDetails: IndividualMovieDetailResponse())
+        MovieDetailsDescriptionView()
     }
 }

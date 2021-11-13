@@ -15,7 +15,7 @@ struct MovieSearchResponse: Decodable {
     let total_pages : Int
 }
 
-struct IndividualMovieResponse: Decodable {
+struct IndividualMovieResponse: Decodable, Equatable {
     let poster_path : String?
     let adult : Bool
     let overview : String
@@ -30,23 +30,6 @@ struct IndividualMovieResponse: Decodable {
     let vote_count : Int
     let video : Bool
     let vote_average : Float
-    
-    init() {
-        poster_path = nil
-        adult = false
-        overview = ""
-        release_date = nil
-        genre_ids = []
-        id = -1
-        original_title = ""
-        original_language = ""
-        title = ""
-        backdrop_path = nil
-        popularity = -1
-        vote_count = -1
-        video = false
-        vote_average = -1
-    }
 }
 
 struct IndividualMovieDetailResponse: Decodable {
@@ -75,33 +58,31 @@ struct IndividualMovieDetailResponse: Decodable {
     let vote_average: Float
     let vote_count : Int
     
-    
     init() {
-        self.adult = false
-        self.backdrop_path = nil
-        self.budget = -1
-        self.genres = []
-        self.homepage = nil
-        self.id = -1
-        self.imdb_id = nil
-        self.original_language = ""
-        self.original_title = ""
-        self.overview = nil
-        self.popularity = -1
-        self.poster_path = nil
-        self.production_companies = []
-        self.production_countries = []
-        self.release_date = ""
-        self.revenue = -1
-        self.runtime = -1
-        self.spoken_languages = []
-        self.status = ""
-        self.tagline = nil
-        self.title = ""
-        self.video = false
-        self.vote_average = -1
-        self.vote_count = -1
+        adult = false
+        backdrop_path =  nil
+        budget = -1
+        genres = []
+        homepage = nil
+        id = -1
+        imdb_id = nil
+        original_language = ""
+        original_title = ""
+        overview = nil
+        popularity = -1
+        poster_path = nil
+        production_companies = []
+        production_countries = []
+        release_date = ""
+        revenue = -1
+        runtime = nil
+        spoken_languages = []
+        status = ""
+        tagline = nil
+        title = ""
+        video  = false
+        vote_average = -1
+        vote_count = -1
     }
-    
 }
 

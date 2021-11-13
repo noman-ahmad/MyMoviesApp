@@ -9,53 +9,40 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State private var movies = [IndividualMovieResponse]()
     @State private var searchText = ""
+    @StateObject private var searchViewModel = SearchViewModel()
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(movies, id:\.id) { movie in
-                    NavigationLink(destination: MovieDetailsView(movieId: movie.id)) {
-                        SearchRow(currentMovie: movie)
-                    }
+                ForEach(searchViewModel.getMovies(), id: \.id) {
+                    movie in
+                    NavigationLink(destination: MovieDetailsView(currentMovie: searchViewModel.getMovieId(movie: movie))) {
+                        SearchRow(movieTitle: movie.title, movieYear: searchViewModel.getMovieDate(movie: movie), image_url: searchViewModel.getMoviePosterURL(movie: movie))
+                    }.onAppear {
+                            if (movie == searchViewModel.getMovies().last) {
+                                Task {
+                                    await searchViewModel.getSearchResultsLoader(queryString: searchText)
+                                }
+                            }
+                        }
                 }
-            }.listStyle(GroupedListStyle())
-            // handles search bar logic, search when entered name of movie
-            .searchable(text: $searchText)
-            .onSubmit(of: .search) {
+            }.searchable(text: $searchText).onSubmit(of: .search) {
                 Task {
-                    let searchString = searchText.replacingOccurrences(of: " ", with: "%20")
-                    if !searchString.isEmpty{
-                        movies = await requestManager.getMovieSearchLoader(queryString: searchString)
+                    if searchText.count >= 3 {
+                        searchViewModel.removeAllMovies()
+                        await searchViewModel.getSearchResultsLoader(queryString: searchText)
                     } else {
-                        movies.removeAll()
+                        searchViewModel.removeAllMovies()
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.automatic)
+            .listStyle(GroupedListStyle())
             .navigationBarTitle("Search For Movies")
         }
     }
-    
-//    var searchResults: [IndividualMovieResponse] {
-//        if searchText.isEmpty {
-//            movies = []
-//            return []
-//        } else {
-//            do {
-//                Task {
-//                    movies = await  requestManager.getSearchResults(queryString: searchText)
-//                }
-//            } catch {
-//                print("Error", error)
-//                movies = []
-//            }
-//            return movies
-//        }
-//    }
-    
 }
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

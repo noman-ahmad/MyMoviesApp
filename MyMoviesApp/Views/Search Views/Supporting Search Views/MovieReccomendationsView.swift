@@ -10,29 +10,36 @@ import Kingfisher
 
 struct MovieReccomendationsView: View {
     
-    var recommended = [IndividualMovieResponse()]
+    var movieReccomendations : [IndividualMovieResponse]
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(recommended, id: \.id) {
-                    movie in
-                    if let poster_path = movie.poster_path {
-                        NavigationLink(destination: MovieDetailsView(movieId: movie.id)) {
-                                let url = "https://image.tmdb.org/t/p/w200/" + poster_path
-                                KFImage(URL(string: url))
-                                        .resizable()
-                                .frame(width: 125, height: 175)
+        
+        if movieReccomendations.count > 0 {
+            VStack(alignment: .leading, spacing: 5) {
+                HStack {
+                    Text("Reccomended").font(.headline).fontWeight(.bold)
+                    Spacer()
+                }
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(movieReccomendations, id: \.id) {
+                            movie in
+                            if let poster_path = movie.poster_path {
+                                NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
+                                    let url = "https://image.tmdb.org/t/p/w200" + poster_path
+                                    KFImage(URL(string: url)).resizable().frame(width: 90, height: 125)
+                                }
+                            }
                         }
                     }
                 }
-            }
+            }.padding()
         }
     }
 }
 
 struct MovieReccomendationsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieReccomendationsView()
+        MovieReccomendationsView(movieReccomendations: [])
     }
 }
