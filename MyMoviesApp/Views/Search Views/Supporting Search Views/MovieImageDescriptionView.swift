@@ -26,7 +26,7 @@ struct MovieImageDescriptionView: View {
                 Spacer()
                 VStack {
                         if moviePosterPath != "" {
-                            KFImage(URL(string: moviePosterPath)).resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3)).scaledToFill()
+                            KFImage(URL(string: moviePosterPath)).resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
                         } else {
                             Image("placeholder-poster").resizable().frame(width: 200, height: 300).cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 3))
                         }

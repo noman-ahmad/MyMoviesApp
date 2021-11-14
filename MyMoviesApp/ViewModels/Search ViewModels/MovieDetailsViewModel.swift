@@ -6,15 +6,24 @@
 //
 
 import Foundation
+import CoreData
+import SwiftUI
+
 
 
 class MovieDetailsViewModel : ObservableObject {
+    
+    // binded to view, so view changes if updated
     @Published private var currentMovie : IndividualMovieDetailResponse
     @Published private var currentMovieCast : [CastResponse]
     @Published private var currentMovieCrew : [CrewResponse]
     @Published private var movieReccomendations : [IndividualMovieResponse]
     @Published private var movieReviews : [ReviewResults]
     @Published private var movieVideos : [VideoResult]
+    
+    @Environment(\.managedObjectContext) private var moc
+    
+    
     
     
     enum MovieDetailsViewModelError : Error {
@@ -89,9 +98,9 @@ class MovieDetailsViewModel : ObservableObject {
             return "ThreeRating"
         } else if (rating < 8.0) {
             return "ThreeFiveRating"
-        } else if (rating < 9.0) {
+        } else if (rating < 8.5) {
             return "FourRating"
-        } else if (rating < 10.0) {
+        } else if (rating < 9.0) {
             return "FourFiveRating"
         } else {
             return "FiveRating"
@@ -292,5 +301,23 @@ class MovieDetailsViewModel : ObservableObject {
     
     func getMovieVideos() -> [VideoResult] {
         return movieVideos
+    }
+    
+    func getMovieId() -> Int{
+        return currentMovie.id
+    }
+    
+    func addMovieToPersistence() {
+        let newMovie = StoredMovie(context: self.moc)
+        newMovie.id = Int64(currentMovie.id)
+        newMovie.title = currentMovie.title
+        newMovie.watch_status = false
+        newMovie.rating = 0
+        
+        do {
+            try self.moc.save()
+        }catch {
+            print("Didnt Work")
+        }
     }
 }

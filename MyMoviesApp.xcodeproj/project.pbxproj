@@ -50,6 +50,8 @@
 		ED3DA7E227332A1100948F94 /* MovieImageDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7E127332A1100948F94 /* MovieImageDescriptionView.swift */; };
 		ED3DA7E42733548700948F94 /* CastCrewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7E32733548700948F94 /* CastCrewResponse.swift */; };
 		ED3DA7E6273366A300948F94 /* MovieReccomendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DA7E5273366A300948F94 /* MovieReccomendationsView.swift */; };
+		ED3DE3E82740755800BF764C /* LibraryCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DE3E72740755800BF764C /* LibraryCollectionsView.swift */; };
+		ED3DE3EA27408AA500BF764C /* UnwatchedMovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3DE3E927408AA500BF764C /* UnwatchedMovieRow.swift */; };
 		ED43184F273F3F35003A8CAB /* MovieReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED43184E273F3F35003A8CAB /* MovieReviewResponse.swift */; };
 		ED431853273F41D0003A8CAB /* MoviesReviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED431852273F41D0003A8CAB /* MoviesReviewRow.swift */; };
 		ED431855273F4832003A8CAB /* MovieVideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED431854273F4832003A8CAB /* MovieVideoResponse.swift */; };
@@ -121,6 +123,8 @@
 		ED3DA7E127332A1100948F94 /* MovieImageDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageDescriptionView.swift; sourceTree = "<group>"; };
 		ED3DA7E32733548700948F94 /* CastCrewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCrewResponse.swift; sourceTree = "<group>"; };
 		ED3DA7E5273366A300948F94 /* MovieReccomendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReccomendationsView.swift; sourceTree = "<group>"; };
+		ED3DE3E72740755800BF764C /* LibraryCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionsView.swift; sourceTree = "<group>"; };
+		ED3DE3E927408AA500BF764C /* UnwatchedMovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwatchedMovieRow.swift; sourceTree = "<group>"; };
 		ED43184E273F3F35003A8CAB /* MovieReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewResponse.swift; sourceTree = "<group>"; };
 		ED431852273F41D0003A8CAB /* MoviesReviewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesReviewRow.swift; sourceTree = "<group>"; };
 		ED431854273F4832003A8CAB /* MovieVideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideoResponse.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 		ED2C89BD273E409500A82D54 /* Library Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED3DE3E62740752100BF764C /* Supporting Library Views */,
 				ED297EB52731C3F200C3448D /* LibraryView.swift */,
 			);
 			path = "Library Views";
@@ -369,6 +374,15 @@
 				ED431852273F41D0003A8CAB /* MoviesReviewRow.swift */,
 			);
 			path = "Supporting Search Views";
+			sourceTree = "<group>";
+		};
+		ED3DE3E62740752100BF764C /* Supporting Library Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED3DE3E72740755800BF764C /* LibraryCollectionsView.swift */,
+				ED3DE3E927408AA500BF764C /* UnwatchedMovieRow.swift */,
+			);
+			path = "Supporting Library Views";
 			sourceTree = "<group>";
 		};
 		EDA0989E273DEFB1003C06C3 /* ViewModels */ = {
@@ -533,6 +547,7 @@
 				ED090C26273F0C9200229961 /* MovieSynopsisRow.swift in Sources */,
 				ED2C89CA273E450700A82D54 /* TwoRating.swift in Sources */,
 				ED297EB62731C3F200C3448D /* LibraryView.swift in Sources */,
+				ED3DE3EA27408AA500BF764C /* UnwatchedMovieRow.swift in Sources */,
 				ED297EB82731C40500C3448D /* SettingsView.swift in Sources */,
 				ED2C89D6273E45C200A82D54 /* FiveRating.swift in Sources */,
 				ED2C89C6273E447F00A82D54 /* OneRating.swift in Sources */,
@@ -542,6 +557,7 @@
 				ED43184F273F3F35003A8CAB /* MovieReviewResponse.swift in Sources */,
 				ED3DA7E227332A1100948F94 /* MovieImageDescriptionView.swift in Sources */,
 				ED431853273F41D0003A8CAB /* MoviesReviewRow.swift in Sources */,
+				ED3DE3E82740755800BF764C /* LibraryCollectionsView.swift in Sources */,
 				ED3138BD273E186000B74517 /* MovieDetailsViewModel.swift in Sources */,
 				ED297EC52731F3FF00C3448D /* SearchRow.swift in Sources */,
 				ED297E842731BDBD00C3448D /* Persistence.swift in Sources */,

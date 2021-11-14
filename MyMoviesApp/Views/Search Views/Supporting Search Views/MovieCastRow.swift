@@ -35,7 +35,7 @@ struct MovieCastRow: View {
                     }
                 }
             }
-        }.padding()
+        }.padding(.leading)
     }
 }
 
