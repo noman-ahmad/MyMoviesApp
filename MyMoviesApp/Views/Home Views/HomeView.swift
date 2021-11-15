@@ -35,7 +35,7 @@ struct HomeView: View {
                         HomePopularMoviesView()
                     }
                     Spacer()
-                }.navigationTitle(Text("MyMoviesApp"))
+                }.navigationTitle(Text("My Movies App"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {

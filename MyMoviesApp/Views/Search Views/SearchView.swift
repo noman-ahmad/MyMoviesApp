@@ -27,7 +27,7 @@ struct SearchView: View {
                             }
                         }
                 }
-            }.searchable(text: $searchText).onSubmit(of: .search) {
+            }.searchable(text: $searchText, prompt: "Search By Name...").onSubmit(of: .search) {
                 Task {
                     if searchText.count >= 3 {
                         searchViewModel.removeAllMovies()
@@ -38,7 +38,7 @@ struct SearchView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("Search For Movies")
+            .navigationBarTitle("My Movies App")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

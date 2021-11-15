@@ -344,9 +344,10 @@ class MovieDetailsViewModel : ObservableObject {
             return "A Film By \(directors[0]) & \(directors[1])"
         } else {
             var to_return = "A Film By \(directors[0]), "
-            for i in 1...directors.count-1 {
+            for i in 1...(directors.count-2) {
                 to_return = to_return + "\(directors[i]), "
             }
+            to_return = to_return + "\(directors[directors.count-1])"
             return to_return
         }
     }
