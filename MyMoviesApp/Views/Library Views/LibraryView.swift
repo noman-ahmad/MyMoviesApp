@@ -59,24 +59,6 @@ struct LibraryView: View {
 
                     }
         }
-        
-    
-            
-            
-//            .toolbar {
-//
-//
-//                    ToolbarItem(placement: .principal) {
-//                        VStack {
-//                            Text("Hello").font(.headline)
-//                            Picker("Choose State", selection: $currentViewState) {
-//                                Text("Watched").tag(0)
-//                                Text("Unwatched").tag(1)
-//                                Text("Collection").tag(2)
-//                            }.pickerStyle(.segmented)
-//                        }.padding()
-//                    }
-//            }
 
             
         }

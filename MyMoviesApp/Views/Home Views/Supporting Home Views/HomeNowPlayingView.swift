@@ -1,31 +1,33 @@
 //
-//  HomePopularMoviesView.swift
+//  HomeNowPlayingView.swift
 //  MyMoviesApp
 //
-//  Created by Noman Ahmad on 11/7/21.
+//  Created by Noman Ahmad on 11/14/21.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct HomePopularMoviesView: View {
+struct HomeNowPlayingView: View {
     
-    @StateObject private var popularMoviesViewModel = PopularViewModel()
+    @StateObject private var nowPlayingViewModel = NowPlayingViewModel()
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+
     
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(popularMoviesViewModel.getPopularMovies(), id: \.id) {
+                ForEach(nowPlayingViewModel.getMoviesNowPlaying(), id: \.id) {
                     movie in
                     if let poster_path = movie.poster_path {
                         let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
-                        NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)){
+                        NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
                             KFImage(URL(string: url)).resizable().frame(width: 120, height: 150).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
                                 .onAppear {
-                                    if (movie == popularMoviesViewModel.getPopularMovies().last) {
+                                    if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {
-                                            await popularMoviesViewModel.getMoviesLoader()
+                                            await nowPlayingViewModel.getMoviesLoader()
                                         }
                                 }
                             }
@@ -38,11 +40,11 @@ struct HomePopularMoviesView: View {
                                 Spacer()
                             }.frame(width: 120, height: 150).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1)).background(Color.gray)
                                 .onAppear {
-                                    if (movie == popularMoviesViewModel.getPopularMovies().last) {
+                                    if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {
-                                            await popularMoviesViewModel.getMoviesLoader()
+                                            await nowPlayingViewModel.getMoviesLoader()
                                         }
-                                }
+                                    }
                             }
                         }
                     }
@@ -52,8 +54,8 @@ struct HomePopularMoviesView: View {
     }
 }
 
-struct HomePopularMoviesView_Previews: PreviewProvider {
+struct HomeNowPlayingView_Previews: PreviewProvider {
     static var previews: some View {
-        HomePopularMoviesView()
+        HomeNowPlayingView()
     }
 }

@@ -21,8 +21,8 @@ struct LibraryCollectionsView: View {
                     if let poster_path = movie.image_path {
                         if poster_path != "" {
                             NavigationLink(destination: MovieDetailsView(currentMovie: Int(movie.id))) {
-                                    KFImage(URL(string: poster_path)).resizable().frame(width: 80, height: 120).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
-                                }
+                                KFImage(URL(string: poster_path)).resizable().frame(width: 80, height: 120).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                            }
                         } else {
                             
                             NavigationLink(destination: MovieDetailsView(currentMovie: Int(movie.id))) {

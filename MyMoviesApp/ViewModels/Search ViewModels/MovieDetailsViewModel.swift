@@ -44,12 +44,12 @@ class MovieDetailsViewModel : ObservableObject {
     
     
     func getMovieName() -> String {
-        return currentMovie.original_title
+        return currentMovie.title
     }
     
     func getMoviePosterPath() -> String {
         if let poster_path = self.currentMovie.poster_path {
-            return "https://image.tmdb.org/t/p/w200/\(poster_path)"
+            return "https://image.tmdb.org/t/p/w500/\(poster_path)"
         } else {
             return "" 
         }
@@ -63,7 +63,15 @@ class MovieDetailsViewModel : ObservableObject {
             }
             let hours = runtime / 60
             let minutes = runtime % 60
-            return "\(hours)h \(minutes) min"
+            if (hours == 0 && minutes == 0) {
+                return ""
+            } else if hours == 0 {
+                return "\(minutes)min"
+            } else if (minutes == 0) {
+                return "\(hours)h"
+            } else {
+                return "\(hours)h \(minutes)min"
+            }
         } else {
             return ""
         }
@@ -318,6 +326,28 @@ class MovieDetailsViewModel : ObservableObject {
             try self.moc.save()
         }catch {
             print("Didnt Work")
+        }
+    }
+    
+    func getMovieDirectors() -> String {
+        var directors : [String] = []
+        for crew in currentMovieCrew {
+            if (crew.job == "Director") {
+                directors.append(crew.name)
+            }
+        }
+        if directors.isEmpty {
+            return ""
+        } else if directors.count == 1 {
+            return "A Film By \(directors[0])"
+        } else if directors.count == 2 {
+            return "A Film By \(directors[0]) & \(directors[1])"
+        } else {
+            var to_return = "A Film By \(directors[0]), "
+            for i in 1...directors.count-1 {
+                to_return = to_return + "\(directors[i]), "
+            }
+            return to_return
         }
     }
 }

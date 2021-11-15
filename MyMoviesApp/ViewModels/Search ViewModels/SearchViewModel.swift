@@ -51,7 +51,6 @@ class SearchViewModel : ObservableObject {
                 }
                 self.currentPage = self.currentPage + 1
             }
-                
         }
     
     func getSearchResultsLoader(queryString: String) async {

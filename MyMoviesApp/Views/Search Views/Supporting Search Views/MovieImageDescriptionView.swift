@@ -20,6 +20,8 @@ struct MovieImageDescriptionView: View {
     
     var movieRuntime : String
     
+    var movieDirector : String
+    
     var body: some View {
         VStack {
             HStack {
@@ -55,16 +57,41 @@ struct MovieImageDescriptionView: View {
                         FiveRating().padding(.top)
                     }
                     Spacer()
+                    
                     HStack {
-                        if movieRuntime != "" {
+                        if movieDirector != "" {
+                            Text(movieDirector).font(.caption2).foregroundColor(.secondary)
+                        }
+                    }
+                    HStack {
+                        
+                        let hasYear = (movieYear != "")
+                        let hasRuntime = (movieRuntime != "")
+                        let hasGenres = (movieGenres != "" )
+                        
+                        if(hasYear && hasRuntime && hasGenres) {
+                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieRuntime).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieGenres).font(.caption2).foregroundColor(.secondary)
+                        } else if (hasYear && hasRuntime) {
+                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
+                            Text("\u{2022}")
+                            Text(movieRuntime).font(.caption2).foregroundColor(.secondary)
+                        } else if(hasYear && hasGenres) {
                             Text(movieYear).font(.caption2).foregroundColor(.secondary)
                             Text("\u{2022}")
                             Text(movieGenres).font(.caption2).foregroundColor(.secondary)
-                            Text("\u{2022}")
+                        } else if(hasRuntime && hasGenres) {
                             Text(movieRuntime).font(.caption2).foregroundColor(.secondary)
-                        } else {
-                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
                             Text("\u{2022}")
+                            Text(movieGenres).font(.caption2).foregroundColor(.secondary)
+                        } else if (hasYear) {
+                            Text(movieYear).font(.caption2).foregroundColor(.secondary)
+                        } else if (hasRuntime) {
+                            Text(movieRuntime).font(.caption2).foregroundColor(.secondary)
+                        } else if(hasGenres) {
                             Text(movieGenres).font(.caption2).foregroundColor(.secondary)
                         }
                     }
@@ -77,6 +104,6 @@ struct MovieImageDescriptionView: View {
 
 struct MovieImageDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieImageDescriptionView(moviePosterPath: "", movieRating: "", movieGenres: "", movieYear: "", movieRuntime: "")
+        MovieImageDescriptionView(moviePosterPath: "", movieRating: "", movieGenres: "", movieYear: "", movieRuntime: "", movieDirector: "")
     }
 }

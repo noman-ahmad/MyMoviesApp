@@ -23,28 +23,29 @@ struct MovieDetailsView: View {
         
         ZStack {
             if isLoading {
-                Text("Loading")
+                ProgressView()
             } else {
                 ScrollView {
-                    MovieImageDescriptionView(moviePosterPath: movieDetailsViewModel.getMoviePosterPath(), movieRating: movieDetailsViewModel.getMovieRating(), movieGenres: movieDetailsViewModel.getMovieGenres(), movieYear: movieDetailsViewModel.getMovieYear(), movieRuntime: movieDetailsViewModel.getMovieRuntime())
+                    MovieImageDescriptionView(moviePosterPath: movieDetailsViewModel.getMoviePosterPath(), movieRating: movieDetailsViewModel.getMovieRating(), movieGenres: movieDetailsViewModel.getMovieGenres(), movieYear: movieDetailsViewModel.getMovieYear(), movieRuntime: movieDetailsViewModel.getMovieRuntime(), movieDirector: movieDetailsViewModel.getMovieDirectors())
                     MovieSynopsisRow(movieDescription: movieDetailsViewModel.getMovieDescription())
                     MovieReccomendationsView(movieReccomendations: movieDetailsViewModel.getMovieReccomendations())
                     MovieCastRow(movieCast: movieDetailsViewModel.getMovieCast())
                 }.navigationBarTitle(movieDetailsViewModel.getMovieName(), displayMode: .inline)
                     .toolbar {
-                        
-                        if currentState == true {
-                            Image(systemName: "checkmark")
-                        } else {
-                            Button {
-                                print("Tapped Here")
-                                currentState = true
-                                addMovieToPersistence()
-                            } label : {
-                                if(currentState == false) {
-                                    Image(systemName: "plus")
-                                } else {
-                                    Image(systemName: "checkmark")
+                        ToolbarItem(placement: .primaryAction) {
+                            if currentState == true {
+                                Image(systemName: "checkmark")
+                            } else {
+                                Button {
+                                    print("Tapped Here")
+                                    currentState = true
+                                    addMovieToPersistence()
+                                } label : {
+                                    if(currentState == false) {
+                                        Image(systemName: "plus")
+                                    } else {
+                                        Image(systemName: "checkmark")
+                                }
                             }
                         }
                     }

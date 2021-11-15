@@ -39,6 +39,7 @@ struct SearchView: View {
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Search For Movies")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
