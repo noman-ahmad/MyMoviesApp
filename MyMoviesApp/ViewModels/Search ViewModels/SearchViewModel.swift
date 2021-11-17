@@ -32,7 +32,7 @@ class SearchViewModel : ObservableObject {
             
             // query url
             let url = "https://api.themoviedb.org/3/search/movie?api_key=\(self.apiKey!)&language=en-US&query=\(search_query)&page=\(currentPage)&include_adult=false"
-            print(url)
+            //print(url)
             guard let apiUrl = URL(string: url) else {
                 //print("Error with URL")
                 throw SearchViewModelError.invalidURL
@@ -42,7 +42,7 @@ class SearchViewModel : ObservableObject {
     
                 // parse returned api data
             let queryResult = try JSONDecoder().decode(MovieSearchResponse.self, from: data)
-            print(queryResult)
+           // print(queryResult)
             DispatchQueue.main.async {
                 if !self.movieResults.isEmpty {
                     self.movieResults.append(contentsOf: queryResult.results)

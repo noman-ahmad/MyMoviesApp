@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct MyMoviesAppApp: App {
-    
-    let persistenceContainer = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-            InitialView().environment(\.managedObjectContext, persistenceContainer.container.viewContext)
+            InitialView()
         }
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 import CoreData
 
 struct LibraryView: View {
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: StoredMovie.entity(), sortDescriptors: []) var movies : FetchedResults<StoredMovie>
+//    @Environment(\.managedObjectContext) var moc
+//    @FetchRequest(entity: StoredMovie.entity(), sortDescriptors: []) var movies : FetchedResults<StoredMovie>
     @State private var currentViewState = 0
     
     
@@ -64,17 +64,17 @@ struct LibraryView: View {
         }
     }
     
-    func removeMovie(at offsets: IndexSet) {
-        for index in offsets {
-            let movie = movies[index]
-            moc.delete(movie)
-        }
-        do {
-            try moc.save()
-        } catch {
-            print("couldnt save context")
-        }
-    }
+//    func removeMovie(at offsets: IndexSet) {
+//        for index in offsets {
+//            let movie = movies[index]
+//            moc.delete(movie)
+//        }
+//        do {
+//            try moc.save()
+//        } catch {
+//            print("couldnt save context")
+//        }
+//    }
 }
 
 struct LibraryView_Previews: PreviewProvider {

@@ -12,7 +12,7 @@ struct HomeNowPlayingView: View {
     
     @StateObject private var nowPlayingViewModel = NowPlayingViewModel()
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.adaptive(minimum: 120))]
 
     
     var body: some View {
@@ -23,7 +23,7 @@ struct HomeNowPlayingView: View {
                     if let poster_path = movie.poster_path {
                         let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
-                            KFImage(URL(string: url)).resizable().frame(width: 120, height: 150).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                            KFImage(URL(string: url)).resizable().frame(width: 120, height: 150).border(Color.gray)
                                 .onAppear {
                                     if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {
@@ -38,7 +38,7 @@ struct HomeNowPlayingView: View {
                                 Spacer()
                                 Text(movie.title).foregroundColor(.primary)
                                 Spacer()
-                            }.frame(width: 120, height: 150).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1)).background(Color.gray)
+                            }.frame(width: 120, height: 150).border(Color.gray).background(Color.gray)
                                 .onAppear {
                                     if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {

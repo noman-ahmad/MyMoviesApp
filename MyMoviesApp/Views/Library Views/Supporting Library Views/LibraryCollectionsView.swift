@@ -7,21 +7,22 @@
 
 import SwiftUI
 import Kingfisher
+import CoreData
 
 struct LibraryCollectionsView: View {
     
-    @FetchRequest(entity: StoredMovie.entity(), sortDescriptors: []) var movies : FetchedResults<StoredMovie>
+    @StateObject private var collectionViewModel = LibraryCollectionViewModel()
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.adaptive(minimum: 120))]
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 8) {
-                ForEach(movies, id:\.id) { movie in
+                ForEach(collectionViewModel.storedMovies, id:\.id) { movie in
                     if let poster_path = movie.image_path {
                         if poster_path != "" {
                             NavigationLink(destination: MovieDetailsView(currentMovie: Int(movie.id))) {
-                                KFImage(URL(string: poster_path)).resizable().frame(width: 80, height: 120).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                                KFImage(URL(string: poster_path)).resizable().frame(width: 120, height: 150).border(Color.gray)
                             }
                         } else {
                             
@@ -34,7 +35,7 @@ struct LibraryCollectionsView: View {
                                         Spacer()
                                     }
                                     Spacer()
-                                }.frame(width: 80, height: 120).cornerRadius(5).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1)).scaledToFit()
+                                }.frame(width: 120, height: 150).border(Color.gray)
                             }.buttonStyle(PlainButtonStyle())
                         }
                     }

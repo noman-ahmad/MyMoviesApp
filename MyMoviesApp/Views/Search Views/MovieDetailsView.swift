@@ -16,9 +16,6 @@ struct MovieDetailsView: View {
     @StateObject private var movieDetailsViewModel = MovieDetailsViewModel()
     @State private var isLoading = false
     @State private var currentState = false
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: StoredMovie.entity(), sortDescriptors: []) var movies: FetchedResults<StoredMovie>
-
     var body: some View {
         
         ZStack {
@@ -28,7 +25,7 @@ struct MovieDetailsView: View {
                 ScrollView {
                     MovieImageDescriptionView(moviePosterPath: movieDetailsViewModel.getMoviePosterPath(), movieRating: movieDetailsViewModel.getMovieRating(), movieGenres: movieDetailsViewModel.getMovieGenres(), movieYear: movieDetailsViewModel.getMovieYear(), movieRuntime: movieDetailsViewModel.getMovieRuntime(), movieDirector: movieDetailsViewModel.getMovieDirectors())
                     MovieSynopsisRow(movieDescription: movieDetailsViewModel.getMovieDescription())
-                    MovieReccomendationsView(movieReccomendations: movieDetailsViewModel.getMovieReccomendations())
+                    MovieReccomendationsView(movieId: movieDetailsViewModel.getMovieId())
                     MovieCastRow(movieCast: movieDetailsViewModel.getMovieCast())
                 }.navigationBarTitle(movieDetailsViewModel.getMovieName(), displayMode: .inline)
                     .toolbar {
@@ -39,7 +36,8 @@ struct MovieDetailsView: View {
                                 Button {
                                     print("Tapped Here")
                                     currentState = true
-                                    addMovieToPersistence()
+                                    movieDetailsViewModel.saveToPersistance()
+                                    //addMovieToPersistence()
                                 } label : {
                                     if(currentState == false) {
                                         Image(systemName: "plus")
@@ -56,6 +54,15 @@ struct MovieDetailsView: View {
             delay()
             Task {
                 await movieDetailsViewModel.getMovieDetailLoader(movieId: currentMovie)
+                Task {
+                    let results = CoreDataManager.shared.getMovieEntity(movieId: movieDetailsViewModel.getMovieId())
+                    if(results.count == 0) {
+                        currentState = false
+                    } else {
+                        currentState = true
+                    }
+                }
+
             }
             Task {
                 await movieDetailsViewModel.getCreditsDetailLoader(movieId: currentMovie)
@@ -63,30 +70,6 @@ struct MovieDetailsView: View {
             Task {
                 await movieDetailsViewModel.getMovieReccomendationLoader(movieId: currentMovie)
             }
-            Task {
-                for movies in movies {
-                    if movies.id == currentMovie {
-                        currentState = true
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    func addMovieToPersistence() {
-        let newMovie = StoredMovie(context: self.moc)
-        newMovie.id = Int64(movieDetailsViewModel.getMovieId())
-        newMovie.title = movieDetailsViewModel.getMovieName()
-        newMovie.watch_status = false
-        newMovie.rating = 0
-        newMovie.review = ""
-        newMovie.image_path = movieDetailsViewModel.getMoviePosterPath()
-        do {
-            try self.moc.save()
-        }catch {
-            print("Didnt Work")
         }
     }
     

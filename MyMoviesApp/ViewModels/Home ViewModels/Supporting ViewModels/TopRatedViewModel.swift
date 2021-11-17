@@ -27,14 +27,14 @@ class TopRatedViewModel : ObservableObject {
     
     func getMovies() async throws {
         let endpoint_url = "https://api.themoviedb.org/3/movie/top_rated?api_key=\(self.apiKey!)&language=en-US&page=\(self.currentPage)"
-        print(endpoint_url)
+        //print(endpoint_url)
         guard let url = URL(string: endpoint_url) else {
             throw TopRatedViewModelError.invalidUrl
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         let queryResult = try JSONDecoder().decode(MovieSearchResponse.self, from: data)
         DispatchQueue.main.async {
-            print(queryResult)
+            //print(queryResult)
             if !self.topRatedMovies.isEmpty {
                 self.topRatedMovies.append(contentsOf: queryResult.results)
             } else {

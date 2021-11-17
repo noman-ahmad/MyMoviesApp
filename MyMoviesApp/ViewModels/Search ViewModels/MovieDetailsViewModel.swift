@@ -183,7 +183,7 @@ class MovieDetailsViewModel : ObservableObject {
     
     func getMovieBackdropPath() -> String {
         if let backdrop_path = self.currentMovie.backdrop_path {
-            print(backdrop_path)
+            //print(backdrop_path)
             return "https://image.tmdb.org/t/p/original/\(backdrop_path)"
         } else {
             return ""
@@ -315,19 +315,19 @@ class MovieDetailsViewModel : ObservableObject {
         return currentMovie.id
     }
     
-    func addMovieToPersistence() {
-        let newMovie = StoredMovie(context: self.moc)
-        newMovie.id = Int64(currentMovie.id)
-        newMovie.title = currentMovie.title
-        newMovie.watch_status = false
-        newMovie.rating = 0
-        
-        do {
-            try self.moc.save()
-        }catch {
-            print("Didnt Work")
-        }
-    }
+//    func addMovieToPersistence() {
+//        let newMovie = StoredMovie(context: self.moc)
+//        newMovie.id = Int64(currentMovie.id)
+//        newMovie.title = currentMovie.title
+//        newMovie.watch_status = false
+//        newMovie.rating = 0
+//        
+//        do {
+//            try self.moc.save()
+//        }catch {
+//            print("Didnt Work")
+//        }
+//    }
     
     func getMovieDirectors() -> String {
         var directors : [String] = []
@@ -350,5 +350,18 @@ class MovieDetailsViewModel : ObservableObject {
             to_return = to_return + "\(directors[directors.count-1])"
             return to_return
         }
+    }
+    
+    
+    func saveToPersistance() {
+        let movie = StoredMovie(context: CoreDataManager.shared.viewContext)
+        movie.id = Int64(getMovieId())
+        movie.title = getMovieName()
+        movie.watch_status = false
+        movie.rating = 0
+        movie.review = ""
+        movie.image_path = getMoviePosterPath()
+        
+        CoreDataManager.shared.save()
     }
 }

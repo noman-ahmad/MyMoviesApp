@@ -27,14 +27,14 @@ class UpcomingViewModel : ObservableObject {
     
     func getMovies() async throws {
         let endpoint_url = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(self.apiKey!)&language=en-US&page=\(self.currentPage)"
-        print(endpoint_url)
+        //print(endpoint_url)
         guard let url = URL(string: endpoint_url) else {
             throw UpcomingViewModelError.invalidUrl
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         let queryResult = try JSONDecoder().decode(NowPlayingResponse.self, from: data)
         DispatchQueue.main.async {
-            print(queryResult)
+            //print(queryResult)
             if !self.upcomingMovies.isEmpty {
                 self.upcomingMovies.append(contentsOf: queryResult.results)
             } else {

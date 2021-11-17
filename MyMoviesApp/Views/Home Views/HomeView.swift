@@ -18,11 +18,11 @@ struct HomeView: View {
                     HStack {
                         Picker("Choose State", selection: $currentViewState) {
                             Text("Top Rated").tag(0)
-                            Text("Now Playing").tag(1)
+                            Text("Showing").tag(1)
                             Text("Upcoming").tag(2)
                             Text("Popular").tag(3)
                         }.pickerStyle(.segmented)
-                    }.frame(width: 400).padding(.top, 3)
+                    }.frame(width: 300).padding(.top, 3)
                     
                     if(currentViewState == 0) {
                        // HomePopularMoviesView()
