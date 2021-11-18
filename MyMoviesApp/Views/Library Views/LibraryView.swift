@@ -42,13 +42,9 @@ struct LibraryView: View {
                     }.frame(width: 300).padding(.top, 3)
                     
                     if currentViewState == 0 {
-                        List {
-                            Text("1")
-                            Text("2")
-                            Text("3")
-                        }
+                      WatchedMoviesCollectionView()
                     } else if currentViewState == 1 {
-                        UnwatchedMovieRow()
+                        UnwatchedMovieRow().ignoresSafeArea()
                     } else {
                         LibraryCollectionsView()
                     }
@@ -63,18 +59,6 @@ struct LibraryView: View {
             
         }
     }
-    
-//    func removeMovie(at offsets: IndexSet) {
-//        for index in offsets {
-//            let movie = movies[index]
-//            moc.delete(movie)
-//        }
-//        do {
-//            try moc.save()
-//        } catch {
-//            print("couldnt save context")
-//        }
-//    }
 }
 
 struct LibraryView_Previews: PreviewProvider {

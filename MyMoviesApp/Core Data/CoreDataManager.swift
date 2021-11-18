@@ -72,6 +72,39 @@ class CoreDataManager {
         }
     }
     
+    func updateMovie(movieId: Int, movieRating: Float, movieReview: String, movieWatched: Bool) {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        fetchRequest.fetchLimit = 1
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "id == %i", movieId)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest).first
+            
+            movieFound!.watch_status = movieWatched
+            movieFound!.review = movieReview
+            movieFound!.rating = movieRating
+            
+            print("updated successfully")
+            save()
+            
+            
+        } catch {
+            print("Couldn't Update")
+        }
+        
+        
+    }
+    
+    
+    
     
     func getAllMoviesUnwatched() -> [StoredMovie] {
         let fetchRequest: NSFetchRequest<StoredMovie>
@@ -96,6 +129,31 @@ class CoreDataManager {
             return []
         }
     }
+    
+    func getAllMoviesWatched() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "rating", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "watch_status == %d", true)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
     
     private init() {
         persistentContainer = NSPersistentContainer(name: "MyMoviesApp")

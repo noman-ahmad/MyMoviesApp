@@ -12,10 +12,11 @@ struct UpdateMovieEntryView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State var movieWatched : Bool = false
-    @State var movieReview : String = "Write a Review.."
+    @State var movieReview : String = ""
     @State var movieRating : String = "5"
     var movieName : String
     var movieId : Int
+    var watched_initial : Bool
     
     var ratings = ["0", "0.5", "1.0", "1.5", "2", "2.0", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"]
     
@@ -48,7 +49,7 @@ struct UpdateMovieEntryView: View {
                         Spacer()
                     }
                 }
-                Section(header : Text("Review")) {
+                Section(header : Text("Write a Review")) {
                     TextEditor(text: $movieReview).frame(height: 200).onTapGesture {
                         movieReview = ""
                     }.foregroundColor(.gray)
@@ -58,41 +59,23 @@ struct UpdateMovieEntryView: View {
         }.navigationBarTitle("Edit Movie").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
-                    
-                        presentationMode.wrappedValue.dismiss()
+                    CoreDataManager.shared.updateMovie(movieId: movieId, movieRating: Float(movieRating)!, movieReview: movieReview, movieWatched: movieWatched)
+                    presentationMode.wrappedValue.dismiss()
                     
                 } label : {
                     Text("Done")
             }
+            .onAppear {
+                if (watched_initial == true) {
+                    movieWatched = true
+                }
+            }
         }
     }
-    
-//    func updateMovie() {
-//        // update the user's values
-//        ForEach(movies, id:\.self) {
-//            movie in
-//            if (movie.id == self.movieId) {
-//                do {
-//
-//                    let fetched = try moc.fetch(movie)
-//
-//                    if(self.movieWatched) {
-//                        movie.setValue(true, forKey: "watch_status")
-//                        movie.setValue(Float(movieRating), forKey: "rating")
-//                        movie.setValue(movieReview, forKey: "review")
-//                    } else {
-//                        movie.setValue(false, forKey: "watch_status")
-//                        movie.setValue(0, forKey: "rating")
-//                        movie.setValue("", forKey: "review")
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
 
 struct UpdateMovieEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateMovieEntryView(movieName: "", movieId: -1)
+        UpdateMovieEntryView(movieName: "", movieId: -1, watched_initial: false)
     }
 }

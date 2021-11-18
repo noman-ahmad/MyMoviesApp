@@ -13,7 +13,7 @@ struct LibraryCollectionsView: View {
     
     @StateObject private var collectionViewModel = LibraryCollectionViewModel()
     
-    let columns = [GridItem(.adaptive(minimum: 120))]
+    let columns = [GridItem(.adaptive(minimum: 100, maximum: 120))]
     
     var body: some View {
         ScrollView {
