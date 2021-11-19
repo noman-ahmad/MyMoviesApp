@@ -12,17 +12,37 @@ struct WatchedMoviesCollectionView: View {
     
     
     var body: some View {
-        List {
-            ForEach(watchedViewModel.storedMovies, id:\.id) {
-                movie in
-                NavigationLink(destination : UpdateMovieEntryView(movieName: movie.title!, movieId: Int(movie.id), watched_initial: movie.watch_status)) {
-                    LibraryWatchedRow(image_url: movie.image_path!, movieTitle: movie.title!, movieRating: movie.rating)
+        
+        ZStack {
+            if(watchedViewModel.storedMovies.count > 0) {
+                List {
+                    ForEach(watchedViewModel.storedMovies, id:\.id) {
+                        movie in
+                        
+                        if let title = movie.title {
+                            if let review = movie.review {
+                                NavigationLink(destination : UpdateMovieEntryView(movieWatched: movie.watch_status, movieReview: review, movieRating: String(movie.rating), movieName: title, movieId: Int(movie.id))) {
+                                    LibraryWatchedRow(image_url: movie.image_path!, movieTitle: title, movieRating: movie.rating, movieReview: review)
+                                }
+                            }
+                        }
+                    }
+                }.refreshable {
+                    print("Refreshing Page")
+                    
+                    watchedViewModel.getAllMoviesWatched()
+                }.listStyle(InsetListStyle())
+            } else {
+                VStack {
+                    Spacer()
+                    Text("Add Some Movies to View Them Here").foregroundColor(Color.secondary)
+                    Spacer()
                 }
             }
-        }.refreshable {
-            print("Refreshing Page")
+
+        }.onAppear {
             watchedViewModel.getAllMoviesWatched()
-        }.listStyle(InsetListStyle())
+        }
     }
 }
 

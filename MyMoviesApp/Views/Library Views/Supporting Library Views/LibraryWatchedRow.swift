@@ -13,6 +13,7 @@ struct LibraryWatchedRow: View {
     var image_url : String
     var movieTitle : String
     var movieRating : Float
+    var movieReview : String
     
     
     var body: some View {
@@ -33,6 +34,7 @@ struct LibraryWatchedRow: View {
                     Image(systemName: "star.fill").resizable().frame(width: 10, height: 10)
                     Text(String(movieRating)).font(.caption2)
                 }
+                Text(movieReview).font(.caption2)
                 Spacer()
             }.frame(height: 100)
         }
@@ -42,6 +44,6 @@ struct LibraryWatchedRow: View {
 
 struct LibraryWatchedRow_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryWatchedRow(image_url: "", movieTitle: "", movieRating: -1)
+        LibraryWatchedRow(image_url: "", movieTitle: "", movieRating: -1, movieReview: "")
     }
 }

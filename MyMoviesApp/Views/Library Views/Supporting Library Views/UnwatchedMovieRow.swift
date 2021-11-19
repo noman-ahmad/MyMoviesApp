@@ -13,26 +13,39 @@ struct UnwatchedMovieRow: View {
     
     
     var body: some View {
-        if(unwatchedViewModel.storedMovies.count > 0) {
-            List {
-                ForEach(unwatchedViewModel.storedMovies, id:\.id) {
-                    movie in
-                    NavigationLink(destination : UpdateMovieEntryView(movieName: movie.title!, movieId: Int(movie.id), watched_initial: movie.watch_status)) {
-                        if let image_path = movie.image_path {
-                            if let movie_title = movie.title {
-                                SearchRow(movieTitle: movie_title, movieYear: "", image_url: image_path)
+        
+        ZStack {
+            if(unwatchedViewModel.storedMovies.count > 0) {
+                List {
+                    ForEach(unwatchedViewModel.storedMovies, id:\.id) {
+                        movie in
+                        if let review = movie.review {
+                            if let title = movie.title {
+                                NavigationLink(destination : UpdateMovieEntryView(movieWatched: movie.watch_status, movieReview: review, movieRating: String(movie.rating), movieName: title, movieId: Int(movie.id))) {
+                                    if let image_path = movie.image_path {
+                                        if let movie_title = movie.title {
+                                            SearchRow(movieTitle: movie_title, movieYear: "", image_url: image_path)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
+                }.refreshable {
+                    print("Refreshing Page")
+                    unwatchedViewModel.getAllMoviesUnwatched()
                 }
-            }.refreshable {
-                print("Refreshing Page")
-                unwatchedViewModel.getAllMoviesUnwatched()
+                .listStyle(InsetListStyle())
+            } else {
+                VStack {
+                    Spacer()
+                    Text("Add Some Movies To See Them Here").foregroundColor(Color.secondary)
+                    Spacer()
+                }
             }
-            .listStyle(InsetListStyle())
 
-        } else {
-            Text("Add Some Views To See Them Here").foregroundColor(Color.secondary)
+        }.onAppear {
+            unwatchedViewModel.getAllMoviesUnwatched()
         }
     }
 }

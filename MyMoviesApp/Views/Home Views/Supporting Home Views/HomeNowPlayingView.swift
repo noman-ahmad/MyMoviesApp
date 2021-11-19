@@ -12,7 +12,7 @@ struct HomeNowPlayingView: View {
     
     @StateObject private var nowPlayingViewModel = NowPlayingViewModel()
     
-    let columns = [GridItem(.adaptive(minimum: 100, maximum: 120))]
+    let columns = [GridItem(.adaptive(minimum: 80, maximum: 120))]
 
     
     var body: some View {

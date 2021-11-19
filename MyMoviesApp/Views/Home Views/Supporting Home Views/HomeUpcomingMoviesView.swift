@@ -11,7 +11,7 @@ import Kingfisher
 struct HomeUpcomingMoviesView: View {
     
     @StateObject private var upcomingMoviesViewModel = UpcomingViewModel()
-    let columns = [GridItem(.adaptive(minimum: 100, maximum: 120))]
+    let columns = [GridItem(.adaptive(minimum: 80, maximum: 120))]
     
     var body: some View {
         ScrollView(.vertical) {

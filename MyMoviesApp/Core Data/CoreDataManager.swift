@@ -103,6 +103,29 @@ class CoreDataManager {
         
     }
     
+    func deleteMovie(movieId: Int) {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        fetchRequest.fetchLimit = 1
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "id == %i", movieId)
+        fetchRequest.predicate = predicate
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            guard let movieFound = try context.fetch(fetchRequest).first else { return  }
+            
+            context.delete(movieFound)
+            save()
+            print("Successfully Deleted")
+        } catch {
+            print("Couldn't Delete")
+        }
+    }
+    
     
     
     
