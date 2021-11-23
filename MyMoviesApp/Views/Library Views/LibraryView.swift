@@ -53,8 +53,8 @@ struct LibraryView: View {
                     .toolbar {
                        
 
-                    }
-        }
+            }
+            }.navigationViewStyle(StackNavigationViewStyle())
 
             
         }

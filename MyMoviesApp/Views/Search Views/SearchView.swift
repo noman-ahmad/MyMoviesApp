@@ -41,6 +41,7 @@ struct SearchView: View {
             .navigationBarTitle("My Movies App")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

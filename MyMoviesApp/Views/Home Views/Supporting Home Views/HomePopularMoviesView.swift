@@ -11,17 +11,17 @@ import Kingfisher
 struct HomePopularMoviesView: View {
     
     @StateObject private var popularMoviesViewModel = PopularViewModel()
-    let columns = [GridItem(.adaptive(minimum: 80, maximum: 120))]
+    let columns = [GridItem(.adaptive(minimum: 100))]
     
     var body: some View {
         ScrollView(.vertical) {
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(popularMoviesViewModel.getPopularMovies(), id: \.id) {
                     movie in
                     if let poster_path = movie.poster_path {
                         let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)){
-                            KFImage(URL(string: url)).resizable().frame(width: 120, height: 150).border(Color.gray)
+                            KFImage(URL(string: url)).resizable().frame(width: 100, height: 150).border(Color.gray)
                                 .onAppear {
                                     if (movie == popularMoviesViewModel.getPopularMovies().last) {
                                         Task {

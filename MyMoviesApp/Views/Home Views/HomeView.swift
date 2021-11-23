@@ -37,20 +37,7 @@ struct HomeView: View {
                     Spacer()
                 }.navigationTitle(Text("My Movies App"))
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Button {
-                                print("Tapped")
-                            } label : {
-                                ZStack {
-                                    NavigationLink(destination: SettingsView()) {
-                                        Image(systemName: "gear")
-                                    }.navigationBarBackButtonHidden(true)
-                                }
-                            }
-                        }
-                }
-            }
+            } .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

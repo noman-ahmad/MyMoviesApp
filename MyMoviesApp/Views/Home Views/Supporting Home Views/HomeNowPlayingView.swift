@@ -12,18 +12,18 @@ struct HomeNowPlayingView: View {
     
     @StateObject private var nowPlayingViewModel = NowPlayingViewModel()
     
-    let columns = [GridItem(.adaptive(minimum: 80, maximum: 120))]
+    let columns = [GridItem(.adaptive(minimum: 100))]
 
     
     var body: some View {
         ScrollView(.vertical) {
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(nowPlayingViewModel.getMoviesNowPlaying(), id: \.id) {
                     movie in
                     if let poster_path = movie.poster_path {
                         let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
-                            KFImage(URL(string: url)).resizable().frame(width: 120, height: 150).border(Color.gray)
+                            KFImage(URL(string: url)).resizable().frame(width: 100, height: 150).border(Color.gray)
                                 .onAppear {
                                     if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {
@@ -38,7 +38,7 @@ struct HomeNowPlayingView: View {
                                 Spacer()
                                 Text(movie.title).foregroundColor(.primary)
                                 Spacer()
-                            }.frame(width: 120, height: 150).border(Color.gray).background(Color.gray)
+                            }.frame(width: 100, height: 150).border(Color.gray).background(Color.gray)
                                 .onAppear {
                                     if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
                                         Task {
@@ -52,6 +52,7 @@ struct HomeNowPlayingView: View {
             }
         }.padding(.leading).padding(.trailing)
     }
+
 }
 
 struct HomeNowPlayingView_Previews: PreviewProvider {
