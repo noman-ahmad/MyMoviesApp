@@ -10,6 +10,8 @@ import SwiftUI
 struct WatchedMoviesCollectionView: View {
     @StateObject private var watchedViewModel = WatchedMoviesViewModel()
     
+    @State private var sortingOption = 0
+    
     
     var body: some View {
         
@@ -32,6 +34,20 @@ struct WatchedMoviesCollectionView: View {
                     
                     watchedViewModel.getAllMoviesWatched()
                 }.listStyle(InsetListStyle())
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Menu {
+                                Picker(selection : $sortingOption, label: Text("Sorting Options")) {
+                                    Text("Rating").tag(0)
+                                    Text("Date Added").tag(1)
+                                    Text("Name").tag(2)
+                                }
+                            }
+                        label: {
+                            Label("Sort", systemImage: "arrow.up.arrow.down.circle.fill")
+                        }
+                        }
+                    }
             } else {
                 VStack {
                     Spacer()
@@ -42,8 +58,20 @@ struct WatchedMoviesCollectionView: View {
 
         }.onAppear {
             watchedViewModel.getAllMoviesWatched()
+            handleSorting()
         }
     }
+
+private func handleSorting() {
+        if(sortingOption == 0) {
+            watchedViewModel.storedMovies = watchedViewModel.storedMovies.sorted{$0.rating > $1.rating}
+        }
+        else if(sortingOption == 1) {
+            watchedViewModel.storedMovies = watchedViewModel.storedMovies.sorted{$0.date_added! < $1.date_added!}
+        } else {
+            watchedViewModel.storedMovies = watchedViewModel.storedMovies.sorted{$0.title! < $1.title!}
+        }
+}
 }
 
 struct WatchedMoviesCollectionView_Previews: PreviewProvider {

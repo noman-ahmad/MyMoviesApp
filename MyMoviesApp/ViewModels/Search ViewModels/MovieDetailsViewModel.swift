@@ -361,7 +361,7 @@ class MovieDetailsViewModel : ObservableObject {
         movie.rating = 0
         movie.review = ""
         movie.image_path = getMoviePosterPath()
-        
+        movie.date_added = Date()
         CoreDataManager.shared.save()
     }
 }
