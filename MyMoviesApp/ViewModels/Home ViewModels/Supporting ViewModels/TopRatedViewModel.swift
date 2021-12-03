@@ -8,7 +8,7 @@
 import Foundation
 
 class TopRatedViewModel : ObservableObject {
-    @Published private var topRatedMovies : [IndividualMovieResponse]
+    @Published var topRatedMovies : [IndividualMovieResponse]
     
     private var currentPage = 1
     private var apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String

@@ -8,9 +8,11 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+class CoreDataManager : ObservableObject {
     let persistentContainer : NSPersistentContainer
     static let shared = CoreDataManager()
+    
+    @Published var hasChanged : Int = 0
     
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -19,6 +21,7 @@ class CoreDataManager {
     func save() {
         do {
             try viewContext.save()
+            hasChanged = hasChanged + 1
         } catch {
             viewContext.rollback()
             print(error.localizedDescription)
@@ -43,6 +46,7 @@ class CoreDataManager {
             for all in movieFound {
                 print(all.id)
             }
+            save()
             return movieFound
         } catch {
             print("Error with Fetch Request \(error)")
@@ -54,7 +58,7 @@ class CoreDataManager {
         let fetchRequest: NSFetchRequest<StoredMovie>
         fetchRequest = StoredMovie.fetchRequest()
         
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date_updated", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         
@@ -65,6 +69,7 @@ class CoreDataManager {
             for all in movieFound {
                 print(all.id)
             }
+            save()
             return movieFound
         } catch {
             print("Error with Fetch Request \(error)")
@@ -152,6 +157,7 @@ class CoreDataManager {
             for all in movieFound {
                 print(all.id)
             }
+            save()
             return movieFound
         } catch {
             print("Error with Fetch Request \(error)")
@@ -176,6 +182,7 @@ class CoreDataManager {
             for all in movieFound {
                 print(all.id)
             }
+            save()
             return movieFound
         } catch {
             print("Error with Fetch Request \(error)")
@@ -184,7 +191,7 @@ class CoreDataManager {
     }
     
     
-    private init() {
+    init() {
         persistentContainer = NSPersistentContainer(name: "MyMoviesApp")
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {

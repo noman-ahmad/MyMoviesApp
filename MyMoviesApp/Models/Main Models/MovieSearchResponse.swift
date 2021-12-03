@@ -15,7 +15,7 @@ struct MovieSearchResponse: Decodable {
     let total_pages : Int
 }
 
-struct IndividualMovieResponse: Decodable, Equatable {
+struct IndividualMovieResponse: Decodable, Equatable, Hashable {
     let poster_path : String?
     let adult : Bool
     let overview : String

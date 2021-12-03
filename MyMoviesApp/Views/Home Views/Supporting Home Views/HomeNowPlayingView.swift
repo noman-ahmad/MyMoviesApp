@@ -12,40 +12,29 @@ struct HomeNowPlayingView: View {
     
     @StateObject private var nowPlayingViewModel = NowPlayingViewModel()
     
-    let columns = [GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6)]
+    let columns = [GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6)]
+    
+    let rowHeight = (UIScreen.screenHeight/4 - 25)
 
     
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(nowPlayingViewModel.getMoviesNowPlaying(), id: \.id) {
-                    movie in
+                ForEach(nowPlayingViewModel.moviesNowPlaying, id: \.self) { movie in
                     if let poster_path = movie.poster_path {
-                        let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
-                            KFImage(URL(string: url)).resizable().frame(maxHeight: (UIScreen.screenHeight/5 - 25)).border(Color.gray)
-                                .onAppear {
-                                    if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
-                                        Task {
-                                            await nowPlayingViewModel.getMoviesLoader()
-                                        }
+                            HomeRowView(movieId: movie.id, movieName: movie.title, moviePosterPath: poster_path, isFromCollection: false ,rowHeight: rowHeight)
+                        }.onAppear() {
+                            if(movie == nowPlayingViewModel.moviesNowPlaying.last) {
+                                Task {
+                                    await nowPlayingViewModel.getMoviesLoader() 
                                 }
                             }
                         }
-                    } else {
-                        NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)){
-                            VStack {
-                                Spacer()
-                                Text(movie.title).foregroundColor(.primary)
-                                Spacer()
-                            }.frame(width: 100, height: 150).border(Color.gray).background(Color.gray)
-                                .onAppear {
-                                    if (movie == nowPlayingViewModel.getMoviesNowPlaying().last) {
-                                        Task {
-                                            await nowPlayingViewModel.getMoviesLoader()
-                                        }
-                                    }
-                            }
+                    }
+                    else {
+                        NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {
+                            HomeEmptyRowView(movieTitle: movie.title, rowHeight: rowHeight)
                         }
                     }
                 }

@@ -10,6 +10,7 @@ import Kingfisher
 
 struct UnwatchedMovieRow: View {
     @StateObject private var unwatchedViewModel = UnwatchedMoviesViewModel()
+    @StateObject private var coreData = CoreDataManager.shared
     
     
     var body: some View {
@@ -27,6 +28,9 @@ struct UnwatchedMovieRow: View {
         } .refreshable {
             unwatchedViewModel.getAllMoviesUnwatched()
         } .listStyle(InsetListStyle())
+        .onAppear(){
+            unwatchedViewModel.getAllMoviesUnwatched()
+        }
     }
 }
 

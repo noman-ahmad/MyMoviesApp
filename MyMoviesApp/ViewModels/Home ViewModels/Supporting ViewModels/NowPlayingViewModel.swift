@@ -9,7 +9,7 @@ import Foundation
 
 
 class NowPlayingViewModel : ObservableObject {
-    @Published private var moviesNowPlaying : [IndividualMovieResponse]
+    @Published var moviesNowPlaying : [IndividualMovieResponse]
     private var currentPage = 1
     private var apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     

@@ -13,10 +13,28 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
+                
+                Section("Usage") {
+                    NavigationLink(destination: SettingsUsageView()) {
+                        HStack {
+                            Text("How-To")
+                            Spacer() 
+                        }
+                    }
+                }
+                
+                
                 Section("About") {
                     NavigationLink(destination: AcknowledgementView()) {
                         HStack {
                             Text("Acknowledgements")
+                            Spacer()
+                        }
+                    }
+                    
+                    NavigationLink(destination: AboutDeveloperView()) {
+                        HStack {
+                            Text("Developer")
                             Spacer()
                         }
                     }

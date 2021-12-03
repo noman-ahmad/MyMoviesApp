@@ -26,19 +26,8 @@ struct WatchedMoviesCollectionView: View {
         } .refreshable {
             watchedViewModel.getAllMoviesWatched()
         } .listStyle(InsetListStyle())
-          .toolbar {
-              ToolbarItem(placement: .primaryAction) {
-                  Menu {
-                      Picker(selection: $sortingOption, label: Text("Sorting Options")) {
-                          Text("Alphabetically").tag(0)
-                          Text("Rating").tag(1)
-                          Text("Date Updated").tag(2)
-                          Text("Year Released").tag(3)
-                      }
-                  } label: {
-                      Image(systemName: "arrow.up.arrow.down.circle")
-                  }
-            }
+          .onAppear() {
+            watchedViewModel.getAllMoviesWatched()
         }
     }
 }

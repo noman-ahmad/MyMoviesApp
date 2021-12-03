@@ -33,8 +33,7 @@ struct MovieImageDescriptionView: View {
                             Image("placeholder-poster").resizable().frame(width: 200, height: 300).border(Color.gray)
                         }
                     if (movieRating == "ZeroRating") {
-                        ZeroRating().padding(.top)
-                        
+
                     }else if (movieRating == "ZeroFiverating") {
                         ZeroFiveRating().padding(.top)
                     } else if (movieRating == "OneRating") {

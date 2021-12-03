@@ -8,7 +8,7 @@
 import Foundation
 
 class UpcomingViewModel : ObservableObject {
-    @Published private var upcomingMovies : [IndividualMovieResponse]
+    @Published var upcomingMovies : [IndividualMovieResponse]
     
     enum UpcomingViewModelError : Error {
         case invalidUrl

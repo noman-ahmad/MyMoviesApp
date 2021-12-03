@@ -8,7 +8,7 @@
 import Foundation
 
 class PopularViewModel : ObservableObject {
-    @Published private var popularMovies : [IndividualMovieResponse]
+    @Published var popularMovies : [IndividualMovieResponse]
     
     private var currentPage = 1
     private var apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String

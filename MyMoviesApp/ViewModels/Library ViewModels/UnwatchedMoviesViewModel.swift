@@ -18,6 +18,7 @@ class UnwatchedMoviesViewModel : ObservableObject {
     
     func getAllMoviesUnwatched() {
         storedMovies = CoreDataManager.shared.getAllMoviesUnwatched()
+        CoreDataManager.shared.save()
     }
     
 }
