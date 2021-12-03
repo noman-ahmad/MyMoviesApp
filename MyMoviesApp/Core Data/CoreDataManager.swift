@@ -72,7 +72,7 @@ class CoreDataManager {
         }
     }
     
-    func updateMovie(movieId: Int, movieRating: Float, movieReview: String, movieWatched: Bool) {
+    func updateMovie(movieId: Int, movieRating: Float, movieReview: String, movieWatched: Bool, movieCinemaRating: Float, movieActingRating: Float, movieSoundRating: Float, movieStoryRating: Float) {
         let fetchRequest: NSFetchRequest<StoredMovie>
         fetchRequest = StoredMovie.fetchRequest()
         fetchRequest.fetchLimit = 1
@@ -91,6 +91,12 @@ class CoreDataManager {
             movieFound!.watch_status = movieWatched
             movieFound!.review = movieReview
             movieFound!.rating = movieRating
+            movieFound!.story_rating = movieStoryRating
+            movieFound!.sound_rating = movieSoundRating
+            movieFound!.cinema_rating = movieCinemaRating
+            movieFound!.acting_rating = movieActingRating
+            
+            movieFound!.date_updated = Date()
             
             print("updated successfully")
             save()

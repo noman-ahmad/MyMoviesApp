@@ -14,39 +14,19 @@ struct UnwatchedMovieRow: View {
     
     var body: some View {
         
-        ZStack {
-            if(unwatchedViewModel.storedMovies.count > 0) {
-                List {
-                    ForEach(unwatchedViewModel.storedMovies, id:\.id) {
-                        movie in
-                        if let review = movie.review {
-                            if let title = movie.title {
-                                NavigationLink(destination : UpdateMovieEntryView(movieWatched: movie.watch_status, movieReview: review, movieRating: String(movie.rating), movieName: title, movieId: Int(movie.id))) {
-                                    if let image_path = movie.image_path {
-                                        if let movie_title = movie.title {
-                                            SearchRow(movieTitle: movie_title, movieYear: "", image_url: image_path)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }.refreshable {
-                    print("Refreshing Page")
-                    unwatchedViewModel.getAllMoviesUnwatched()
+        
+        
+        List {
+            ForEach(unwatchedViewModel.storedMovies, id:\.id) {
+                movie in
+                NavigationLink(destination: MovieDetailsView(currentMovie: Int(movie.id))) {
+                    LibraryUnwatchedRow(movieEntity: movie, movieId: Int(movie.id))
                 }
-                .listStyle(InsetListStyle())
-            } else {
-                VStack {
-                    Spacer()
-                    Text("Add Some Movies To See Them Here").foregroundColor(Color.secondary)
-                    Spacer()
-                }
+                .listRowSeparator(.hidden)
             }
-
-        }.onAppear {
+        } .refreshable {
             unwatchedViewModel.getAllMoviesUnwatched()
-        }
+        } .listStyle(InsetListStyle())
     }
 }
 

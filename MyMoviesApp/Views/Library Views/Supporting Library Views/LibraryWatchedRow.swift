@@ -10,40 +10,73 @@ import Kingfisher
 
 struct LibraryWatchedRow: View {
     
-    var image_url : String
-    var movieTitle : String
-    var movieRating : Float
-    var movieReview : String
+    @State var movieEntity : StoredMovie
+    var movieId : Int
+    
+    @State private var showingSheet = false
     
     
     var body: some View {
         HStack {
             VStack {
-                Spacer()
-                if image_url != "" {
-                    KFImage(URL(string: image_url)).resizable().frame(width: 75, height: 100).background(Color.gray).border(Color.gray)
+                if let image_url = movieEntity.image_path {
+                    KFImage(URL(string: image_url)).resizable().frame(width:75, height: 125).background(Color.gray).border(Color.gray)
                 } else {
-                    Image("placeholder-poster").resizable().frame(width: 75, height: 100).background(Color.gray).border(Color.gray)
+                    Image("placeholder-poster").resizable().frame(width: 75, height: 125).background(Color.gray).border(Color.gray)
                 }
-                Spacer()
             }
-            
-            VStack(alignment: .leading) {
-                Text(movieTitle).font(.caption)
-                HStack {
-                    Image(systemName: "star.fill").resizable().frame(width: 10, height: 10)
-                    Text(String(movieRating)).font(.caption2)
+            VStack(alignment: .leading, spacing: 6) {
+                
+                if let title = movieEntity.title {
+                    Text(title).fontWeight(.semibold).font(.subheadline)
                 }
-                Text(movieReview).font(.caption2)
+                HStack {
+                    if let movieDirector = movieEntity.director {
+                        if let movieYear = movieEntity.year_released {
+                            Text("\(movieDirector) \u{2022} \(movieYear)").font(.caption).foregroundColor(.secondary)
+                        }
+                    }
+                    
+                }
+                
+                if let review = movieEntity.review {
+                    Text(review).font(.caption2)
+                }
+                
                 Spacer()
-            }.frame(height: 100)
-        }
-
+                
+                
+            }.frame(height: 125)
+            Spacer()
+            VStack {
+                
+                HStack(spacing:3) {
+                    Image(systemName: "star.fill").resizable().frame(width: 10, height: 10)
+                    Text(String(movieEntity.rating)).fontWeight(.semibold).font(.caption)
+                }
+                Spacer()
+                
+                Button {
+                    print("Here")
+                    showingSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "square.and.pencil").resizable().frame(width: 20, height: 20)
+                    }
+                } .buttonStyle(PlainButtonStyle())
+                    .sheet(isPresented: $showingSheet) {
+                        if let title = movieEntity.title {
+                            UpdateMovieEntryView(movieWatched: movieEntity.watch_status, movieReview: movieEntity.review!, movieRating: movieEntity.rating, movieCinemaRating: movieEntity.cinema_rating, movieStoryRating: movieEntity.story_rating, movieSoundRating: movieEntity.sound_rating, movieActingRating: movieEntity.acting_rating, movieName: title, movieId: Int(movieEntity.id), movieDirector: movieEntity.director!, movieYear: movieEntity.year_released!)
+                        }
+                    }
+            }
+        }.ignoresSafeArea().frame(alignment: .leading)
+        
     }
 }
 
 struct LibraryWatchedRow_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryWatchedRow(image_url: "", movieTitle: "", movieRating: -1, movieReview: "")
+        LibraryWatchedRow(movieEntity: StoredMovie(), movieId: -1)
     }
 }

@@ -31,7 +31,7 @@ struct MovieDetailsView: View {
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             if currentState == true {
-                                Image(systemName: "checkmark")
+                                Image(systemName: "checkmark.circle.fill")
                             } else {
                                 Button {
                                     print("Tapped Here")
@@ -40,9 +40,9 @@ struct MovieDetailsView: View {
                                     //addMovieToPersistence()
                                 } label : {
                                     if(currentState == false) {
-                                        Image(systemName: "plus")
+                                        Image(systemName: "plus.circle.fill")
                                     } else {
-                                        Image(systemName: "checkmark")
+                                        Image(systemName: "checkmark.circle.fill")
                                 }
                             }
                         }

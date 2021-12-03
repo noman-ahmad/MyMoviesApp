@@ -39,7 +39,9 @@ struct LibraryView: View {
                             Text("Unwatched").tag(1)
                             Text("Collection").tag(2)
                         }.pickerStyle(.segmented)
-                    }.frame(width: 300).padding(.top, 3)
+                    }.frame(maxWidth: .infinity)
+                        .padding(.leading)
+                        .padding(.trailing)
                     
                     if currentViewState == 0 {
                       WatchedMoviesCollectionView()
@@ -48,16 +50,12 @@ struct LibraryView: View {
                     } else {
                         LibraryCollectionsView()
                     }
-                }.navigationTitle("My Movies App")
+                }
+                    .navigationTitle("My Movies App")
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                       
-
-            }
             }.navigationViewStyle(StackNavigationViewStyle())
-
-            
         }
+
     }
 }
 

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="StoredMovie" representedClassName="StoredMovie" syncable="YES" codeGenerationType="class">
-        <attribute name="date_added" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="acting_rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cinema_rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date_updated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="director" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="image_path" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="review" optional="YES" attributeType="String"/>
+        <attribute name="sound_rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="story_rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="watch_status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="year_released" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="StoredMovie" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="StoredMovie" positionX="-63" positionY="-18" width="128" height="224"/>
     </elements>
 </model>

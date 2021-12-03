@@ -339,11 +339,11 @@ class MovieDetailsViewModel : ObservableObject {
         if directors.isEmpty {
             return ""
         } else if directors.count == 1 {
-            return "A Film By \(directors[0])"
+            return "\(directors[0])"
         } else if directors.count == 2 {
-            return "A Film By \(directors[0]) & \(directors[1])"
+            return "\(directors[0]) & \(directors[1])"
         } else {
-            var to_return = "A Film By \(directors[0]), "
+            var to_return = "\(directors[0]), "
             for i in 1...(directors.count-2) {
                 to_return = to_return + "\(directors[i]), "
             }
@@ -357,11 +357,17 @@ class MovieDetailsViewModel : ObservableObject {
         let movie = StoredMovie(context: CoreDataManager.shared.viewContext)
         movie.id = Int64(getMovieId())
         movie.title = getMovieName()
+        movie.director = getMovieDirectors()
         movie.watch_status = false
         movie.rating = 0
+        movie.sound_rating = 0
+        movie.acting_rating = 0
+        movie.cinema_rating = 0
+        movie.story_rating = 0
+        movie.year_released = getMovieYear()
         movie.review = ""
         movie.image_path = getMoviePosterPath()
-        movie.date_added = Date()
+        movie.date_updated = Date()
         CoreDataManager.shared.save()
     }
 }
