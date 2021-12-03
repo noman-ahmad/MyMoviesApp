@@ -19,23 +19,34 @@ struct LibraryUnwatchedRow: View {
         HStack {
             VStack {
                 if let image_url = movieEntity.image_path {
-                    KFImage(URL(string: image_url)).resizable().aspectRatio(contentMode: .fill).ignoresSafeArea().frame(width:75, height: 100).background(Color.gray)
+                    KFImage(URL(string: image_url)).resizable().frame(width:75, height: 125).background(Color.gray).border(Color.gray)
                 } else {
-                    Image("placeholder-poster").resizable().aspectRatio(contentMode: .fill).frame(width: 75, height: 100).background(Color.gray)
+                    Image("placeholder-poster").resizable().frame(width: 75, height: 125).background(Color.gray).border(Color.gray)
                 }
             }
             
             VStack(alignment: .leading, spacing: 6) {
                 
                 if let title = movieEntity.title {
-                    Text(title).font(.caption)
+                    Text(title).fontWeight(.semibold).font(.subheadline)
                 }
-                if let movieYear = movieEntity.year_released {
-                    Text(movieYear).font(.caption2)
+                HStack {
+                    if let movieDirector = movieEntity.director {
+                        if let movieYear = movieEntity.year_released {
+                            Text("\(movieDirector) \u{2022} \(movieYear)").font(.caption).foregroundColor(.secondary)
+                        }
+                    }
+                    
                 }
+                
+                if let review = movieEntity.review {
+                    Text(review).font(.caption2)
+                }
+                
                 Spacer()
                 
-            }.frame(height: 100)
+                
+            }.frame(height: 125)
             Spacer()
             VStack {
                 Button {

@@ -20,20 +20,21 @@ struct SearchRow: View {
             VStack {
                 Spacer()
                 if image_url != "" {
-                    KFImage(URL(string: image_url)).resizable().frame(width: 75, height: 100).background(Color.gray)
+                    KFImage(URL(string: image_url)).resizable().frame(width: 75, height: 125).background(Color.gray).border(Color.gray)
                 } else {
-                    Image("placeholder-poster").resizable().frame(width: 75, height: 100).background(Color.gray)
+                    Image("placeholder-poster").resizable().frame(width: 75, height: 125).background(Color.gray).border(Color.gray)
                 }
                 Spacer()
             }
             
-            VStack(alignment: .leading) {
-                Text(movieTitle).font(.caption)
-                if movieYear != "" {
-                    Text(movieYear).font(.caption2).foregroundColor(.secondary)
-                } 
+            VStack(alignment: .leading, spacing: 6) {
+                Text(movieTitle).fontWeight(.bold).font(.subheadline)
+                
+                HStack {
+                    Text("\(movieYear)").font(.caption).foregroundColor(.secondary)
+                }
                 Spacer()
-            }.frame(height: 100)
+            }.frame(height: 125)
         }
     }
 }

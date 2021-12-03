@@ -98,27 +98,25 @@ struct UpdateMovieEntryView: View {
                         }
                     }
                     Section(header : Text("Write a Review")) {
-                        TextEditor(text: $movieReview).frame(height: 200).onTapGesture {
-                            movieReview = ""
-                        }.foregroundColor(.gray)
+                        TextEditor(text: $movieReview).frame(height: 200).foregroundColor(.gray)
                     }
                     
-                    Section {
-                        Button {
-                            CoreDataManager.shared.updateMovie(movieId: movieId, movieRating: movieRating, movieReview: movieReview, movieWatched: movieWatched, movieCinemaRating: movieCinemaRating, movieActingRating: movieActingRating, movieSoundRating: movieSoundRating, movieStoryRating: movieSoundRating)
-                            presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            HStack {
-                                Spacer()
-                                Text("Update")
-                                Image(systemName: "square.and.pencil")
-                                Spacer()
-                            }.foregroundColor(Color.blue)
-                        }
-                    }
                 }
                 
                 Section {
+                    
+                    Button {
+                        CoreDataManager.shared.updateMovie(movieId: movieId, movieRating: movieRating, movieReview: movieReview, movieWatched: movieWatched, movieCinemaRating: movieCinemaRating, movieActingRating: movieActingRating, movieSoundRating: movieSoundRating, movieStoryRating: movieSoundRating)
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Update")
+                            Image(systemName: "square.and.pencil")
+                            Spacer()
+                        }.foregroundColor(Color.blue)
+                    }
+                    
                     Button {
                         CoreDataManager.shared.deleteMovie(movieId: movieId)
                         presentationMode.wrappedValue.dismiss()

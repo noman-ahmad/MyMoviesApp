@@ -11,7 +11,7 @@ import Kingfisher
 struct HomeUpcomingMoviesView: View {
     
     @StateObject private var upcomingMoviesViewModel = UpcomingViewModel()
-    let columns = [GridItem(.adaptive(minimum: 100))]
+    let columns = [GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6), GridItem(.flexible(minimum: 80), spacing: 6)]
     
     var body: some View {
         ScrollView(.vertical) {
@@ -21,7 +21,7 @@ struct HomeUpcomingMoviesView: View {
                     if let poster_path = movie.poster_path {
                         let url = "https://image.tmdb.org/t/p/w500/\(poster_path)"
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)){
-                            KFImage(URL(string: url)).resizable().frame(width: 100, height: 150).border(Color.gray)
+                            KFImage(URL(string: url)).resizable().frame(maxHeight: (UIScreen.screenHeight/5 - 25)).border(Color.gray)
                                 .onAppear {
                                     if (movie == upcomingMoviesViewModel.getUpcomingMovies().last) {
                                         Task {

@@ -37,7 +37,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
+            .listStyle(InsetListStyle())
             .navigationBarTitle("My Movies App")
             .navigationBarTitleDisplayMode(.inline)
         }

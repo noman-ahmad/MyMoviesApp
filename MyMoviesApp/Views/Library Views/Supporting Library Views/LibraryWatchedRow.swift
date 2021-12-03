@@ -51,8 +51,22 @@ struct LibraryWatchedRow: View {
             VStack {
                 
                 HStack(spacing:3) {
-                    Image(systemName: "star.fill").resizable().frame(width: 10, height: 10)
-                    Text(String(movieEntity.rating)).fontWeight(.semibold).font(.caption)
+                    if movieEntity.rating == 10.0 {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.6, green: 0.83, blue: 1))
+                    }
+                    else if movieEntity.rating >= 9.0 {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.4235, green: 0.7569, blue: 0.5882))
+                    }
+                    else if movieEntity.rating >= 7.5 {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.9059, green: 0.7412, blue: 0.2588))
+                    }
+                    else if movieEntity.rating >= 6.0 {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.7098, green: 0.7098, blue: 0.7412))
+                    }
+                    else {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.6824, green: 0.4078, blue: 0.2588))
+                    }
+                    Text(String(movieEntity.rating)).fontWeight(.semibold).font(.subheadline)
                 }
                 Spacer()
                 
