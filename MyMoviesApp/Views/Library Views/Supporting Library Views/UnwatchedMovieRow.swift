@@ -31,6 +31,7 @@ struct UnwatchedMovieRow: View {
         .onAppear(){
             unwatchedViewModel.getAllMoviesUnwatched()
         }
+
     }
 }
 

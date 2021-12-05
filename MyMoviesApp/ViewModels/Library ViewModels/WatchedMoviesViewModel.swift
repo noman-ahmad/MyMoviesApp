@@ -21,21 +21,28 @@ class WatchedMoviesViewModel : ObservableObject {
     }
     
     func sortRating() {
-        storedMovies.sort {
-            $0.rating < $1.rating
-        }
+        storedMovies.removeAll()
+        getAllMoviesWatched()
     }
     
     func sortName() {
-        storedMovies.sort {
-            $0.title! < $1.title!
-        }
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesWatchedTitle()
     }
     
     func sortDate() {
-        storedMovies.sort {
-            $0.date_updated! < $1.date_updated!
-        }
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesWatchedDate()
+    }
+    
+    func sortReleased() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesWatchedReleased()
+    }
+    
+    func sortDirector() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesWatchedDirector()
     }
 }
 
