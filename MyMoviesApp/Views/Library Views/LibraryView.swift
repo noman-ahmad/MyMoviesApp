@@ -51,7 +51,7 @@ struct LibraryView: View {
                         LibraryCollectionsView()
                     }
                 }
-                    .navigationTitle("My Movies App")
+                    .navigationTitle("My Movies")
                     .navigationBarTitleDisplayMode(.inline)
             }.navigationViewStyle(StackNavigationViewStyle())
         }

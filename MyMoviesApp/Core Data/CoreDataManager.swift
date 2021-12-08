@@ -215,6 +215,31 @@ class CoreDataManager : ObservableObject {
         }
     }
     
+    func getAllMoviesUnwatchedDate() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "date_updated", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "watch_status == %d", false)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
     func getAllMoviesWatchedTitle() -> [StoredMovie] {
         let fetchRequest: NSFetchRequest<StoredMovie>
         fetchRequest = StoredMovie.fetchRequest()
@@ -223,6 +248,31 @@ class CoreDataManager : ObservableObject {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         let predicate = NSPredicate(format: "watch_status == %d", true)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesUnwatchedTitle() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "watch_status == %d", false)
         fetchRequest.predicate = predicate
         
         do {
@@ -265,6 +315,31 @@ class CoreDataManager : ObservableObject {
         }
     }
     
+    func getAllMoviesUnwatchedReleased() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "year_released", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "watch_status == %d", false)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
     func getAllMoviesWatchedDirector() -> [StoredMovie] {
         let fetchRequest: NSFetchRequest<StoredMovie>
         fetchRequest = StoredMovie.fetchRequest()
@@ -273,6 +348,31 @@ class CoreDataManager : ObservableObject {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         let predicate = NSPredicate(format: "watch_status == %d", true)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesUnwatchedDirector() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "director", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "watch_status == %d", false)
         fetchRequest.predicate = predicate
         
         do {

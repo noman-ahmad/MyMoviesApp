@@ -25,7 +25,7 @@ struct LibraryCollectionsView: View {
     
     var body: some View {
         
-            ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: columns) {
                     ForEach(collectionViewModel.storedMovies, id:\.id) { movie in
                         NavigationLink(destination: MovieDetailsView(currentMovie: Int(movie.id))) {

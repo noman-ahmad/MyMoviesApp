@@ -10,6 +10,15 @@
 		ED090C24273EFE2200229961 /* MovieDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED090C23273EFE2200229961 /* MovieDetailsRow.swift */; };
 		ED090C26273F0C9200229961 /* MovieSynopsisRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED090C25273F0C9200229961 /* MovieSynopsisRow.swift */; };
 		ED090C28273F241900229961 /* MovieCastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED090C27273F241900229961 /* MovieCastRow.swift */; };
+		ED1D3837275EB11600F36D7B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1D3836275EB11600F36D7B /* WidgetKit.framework */; };
+		ED1D3839275EB11600F36D7B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1D3838275EB11600F36D7B /* SwiftUI.framework */; };
+		ED1D383C275EB11600F36D7B /* MyMoviesAppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1D383B275EB11600F36D7B /* MyMoviesAppWidget.swift */; };
+		ED1D383F275EB11800F36D7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED1D383E275EB11800F36D7B /* Assets.xcassets */; };
+		ED1D3841275EB11800F36D7B /* MyMoviesAppWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = ED1D383D275EB11700F36D7B /* MyMoviesAppWidget.intentdefinition */; };
+		ED1D3842275EB11800F36D7B /* MyMoviesAppWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = ED1D383D275EB11700F36D7B /* MyMoviesAppWidget.intentdefinition */; };
+		ED1D3845275EB11800F36D7B /* MyMoviesAppWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ED1D3834275EB11600F36D7B /* MyMoviesAppWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ED27665D275D815600E55484 /* WatchProvidersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27665C275D815600E55484 /* WatchProvidersResponse.swift */; };
+		ED27665F275D8CDC00E55484 /* MovieStreamingSitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27665E275D8CDC00E55484 /* MovieStreamingSitesView.swift */; };
 		ED297E7B2731BDBC00C3448D /* MyMoviesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED297E7A2731BDBC00C3448D /* MyMoviesAppApp.swift */; };
 		ED297E7F2731BDBD00C3448D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED297E7E2731BDBD00C3448D /* Assets.xcassets */; };
 		ED297E822731BDBD00C3448D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED297E812731BDBD00C3448D /* Preview Assets.xcassets */; };
@@ -83,6 +92,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		ED1D3843275EB11800F36D7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED297E6F2731BDBC00C3448D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED1D3833275EB11600F36D7B;
+			remoteInfo = MyMoviesAppWidgetExtension;
+		};
 		ED297E8D2731BDBD00C3448D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ED297E6F2731BDBC00C3448D /* Project object */;
@@ -99,10 +115,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		ED1D3846275EB11800F36D7B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ED1D3845275EB11800F36D7B /* MyMoviesAppWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		ED090C23273EFE2200229961 /* MovieDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRow.swift; sourceTree = "<group>"; };
 		ED090C25273F0C9200229961 /* MovieSynopsisRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSynopsisRow.swift; sourceTree = "<group>"; };
 		ED090C27273F241900229961 /* MovieCastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCastRow.swift; sourceTree = "<group>"; };
+		ED1D3834275EB11600F36D7B /* MyMoviesAppWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MyMoviesAppWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1D3836275EB11600F36D7B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ED1D3838275EB11600F36D7B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		ED1D383B275EB11600F36D7B /* MyMoviesAppWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMoviesAppWidget.swift; sourceTree = "<group>"; };
+		ED1D383D275EB11700F36D7B /* MyMoviesAppWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MyMoviesAppWidget.intentdefinition; sourceTree = "<group>"; };
+		ED1D383E275EB11800F36D7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED1D3840275EB11800F36D7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED27665C275D815600E55484 /* WatchProvidersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProvidersResponse.swift; sourceTree = "<group>"; };
+		ED27665E275D8CDC00E55484 /* MovieStreamingSitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStreamingSitesView.swift; sourceTree = "<group>"; };
 		ED297E772731BDBC00C3448D /* MyMoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297E7A2731BDBC00C3448D /* MyMoviesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMoviesAppApp.swift; sourceTree = "<group>"; };
 		ED297E7E2731BDBD00C3448D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,6 +219,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ED1D3831275EB11600F36D7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1D3839275EB11600F36D7B /* SwiftUI.framework in Frameworks */,
+				ED1D3837275EB11600F36D7B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED297E742731BDBC00C3448D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +253,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED1D3835275EB11600F36D7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED1D3836275EB11600F36D7B /* WidgetKit.framework */,
+				ED1D3838275EB11600F36D7B /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED1D383A275EB11600F36D7B /* MyMoviesAppWidget */ = {
+			isa = PBXGroup;
+			children = (
+				ED1D383B275EB11600F36D7B /* MyMoviesAppWidget.swift */,
+				ED1D383D275EB11700F36D7B /* MyMoviesAppWidget.intentdefinition */,
+				ED1D383E275EB11800F36D7B /* Assets.xcassets */,
+				ED1D3840275EB11800F36D7B /* Info.plist */,
+			);
+			path = MyMoviesAppWidget;
+			sourceTree = "<group>";
+		};
 		ED297E6E2731BDBC00C3448D = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +280,8 @@
 				ED297E792731BDBC00C3448D /* MyMoviesApp */,
 				ED297E8F2731BDBD00C3448D /* MyMoviesAppTests */,
 				ED297E992731BDBD00C3448D /* MyMoviesAppUITests */,
+				ED1D383A275EB11600F36D7B /* MyMoviesAppWidget */,
+				ED1D3835275EB11600F36D7B /* Frameworks */,
 				ED297E782731BDBC00C3448D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -222,6 +292,7 @@
 				ED297E772731BDBC00C3448D /* MyMoviesApp.app */,
 				ED297E8C2731BDBD00C3448D /* MyMoviesAppTests.xctest */,
 				ED297E962731BDBD00C3448D /* MyMoviesAppUITests.xctest */,
+				ED1D3834275EB11600F36D7B /* MyMoviesAppWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -391,6 +462,7 @@
 				ED3DA7E32733548700948F94 /* CastCrewResponse.swift */,
 				ED43184E273F3F35003A8CAB /* MovieReviewResponse.swift */,
 				ED431854273F4832003A8CAB /* MovieVideoResponse.swift */,
+				ED27665C275D815600E55484 /* WatchProvidersResponse.swift */,
 			);
 			path = "Supporting Models";
 			sourceTree = "<group>";
@@ -438,6 +510,7 @@
 				ED090C27273F241900229961 /* MovieCastRow.swift */,
 				ED431852273F41D0003A8CAB /* MoviesReviewRow.swift */,
 				ED40BDC2274455D100CC1506 /* MovieReviewsView.swift */,
+				ED27665E275D8CDC00E55484 /* MovieStreamingSitesView.swift */,
 			);
 			path = "Supporting Search Views";
 			sourceTree = "<group>";
@@ -499,6 +572,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ED1D3833275EB11600F36D7B /* MyMoviesAppWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED1D3849275EB11800F36D7B /* Build configuration list for PBXNativeTarget "MyMoviesAppWidgetExtension" */;
+			buildPhases = (
+				ED1D3830275EB11600F36D7B /* Sources */,
+				ED1D3831275EB11600F36D7B /* Frameworks */,
+				ED1D3832275EB11600F36D7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyMoviesAppWidgetExtension;
+			productName = MyMoviesAppWidgetExtension;
+			productReference = ED1D3834275EB11600F36D7B /* MyMoviesAppWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		ED297E762731BDBC00C3448D /* MyMoviesApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED297EA02731BDBE00C3448D /* Build configuration list for PBXNativeTarget "MyMoviesApp" */;
@@ -506,10 +596,12 @@
 				ED297E732731BDBC00C3448D /* Sources */,
 				ED297E742731BDBC00C3448D /* Frameworks */,
 				ED297E752731BDBC00C3448D /* Resources */,
+				ED1D3846275EB11800F36D7B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ED1D3844275EB11800F36D7B /* PBXTargetDependency */,
 			);
 			name = MyMoviesApp;
 			packageProductDependencies = (
@@ -565,6 +657,9 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					ED1D3833275EB11600F36D7B = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					ED297E762731BDBC00C3448D = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -597,11 +692,20 @@
 				ED297E762731BDBC00C3448D /* MyMoviesApp */,
 				ED297E8B2731BDBD00C3448D /* MyMoviesAppTests */,
 				ED297E952731BDBD00C3448D /* MyMoviesAppUITests */,
+				ED1D3833275EB11600F36D7B /* MyMoviesAppWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED1D3832275EB11600F36D7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1D383F275EB11800F36D7B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED297E752731BDBC00C3448D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -630,6 +734,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ED1D3830275EB11600F36D7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1D383C275EB11600F36D7B /* MyMoviesAppWidget.swift in Sources */,
+				ED1D3841275EB11800F36D7B /* MyMoviesAppWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED297E732731BDBC00C3448D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -661,6 +774,7 @@
 				ED3138BD273E186000B74517 /* MovieDetailsViewModel.swift in Sources */,
 				ED297EC52731F3FF00C3448D /* SearchRow.swift in Sources */,
 				ED431855273F4832003A8CAB /* MovieVideoResponse.swift in Sources */,
+				ED27665F275D8CDC00E55484 /* MovieStreamingSitesView.swift in Sources */,
 				ED42D2AF275AA324005E63C9 /* SettingsUsageView.swift in Sources */,
 				EDF9D0A3275A9A6900E00892 /* HomeEmptyRowView.swift in Sources */,
 				ED2C89D2273E457A00A82D54 /* FourRating.swift in Sources */,
@@ -675,6 +789,7 @@
 				ED40BDB52741F4A900CC1506 /* UpcomingViewModel.swift in Sources */,
 				ED090C24273EFE2200229961 /* MovieDetailsRow.swift in Sources */,
 				EDCA9AEB274612690093CB50 /* WatchedMoviesViewModel.swift in Sources */,
+				ED27665D275D815600E55484 /* WatchProvidersResponse.swift in Sources */,
 				EDF9D0A5275A9FE200E00892 /* AboutDeveloperView.swift in Sources */,
 				ED2C89D4273E45A600A82D54 /* FourFiveRating.swift in Sources */,
 				ED3DA7DD2733106400948F94 /* MovieDetailsView.swift in Sources */,
@@ -693,6 +808,7 @@
 				ED3DA7E6273366A300948F94 /* MovieReccomendationsView.swift in Sources */,
 				ED3A97E0273861AB0092E7C3 /* HomePopularMoviesView.swift in Sources */,
 				ED40BDAE2741E27F00CC1506 /* HomeViewModel.swift in Sources */,
+				ED1D3842275EB11800F36D7B /* MyMoviesAppWidget.intentdefinition in Sources */,
 				ED3A97E2273867A00092E7C3 /* NowPlayingResponse.swift in Sources */,
 				ED3992A6273226EB00DC1E99 /* ProductionResponse.swift in Sources */,
 				ED40BDC3274455D100CC1506 /* MovieReviewsView.swift in Sources */,
@@ -722,6 +838,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		ED1D3844275EB11800F36D7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED1D3833275EB11600F36D7B /* MyMoviesAppWidgetExtension */;
+			targetProxy = ED1D3843275EB11800F36D7B /* PBXContainerItemProxy */;
+		};
 		ED297E8E2731BDBD00C3448D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ED297E762731BDBC00C3448D /* MyMoviesApp */;
@@ -735,6 +856,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		ED1D3847275EB11800F36D7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K6ATTQCYHQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyMoviesAppWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMoviesAppWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nomanhmad.MyMoviesApp.MyMoviesAppWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED1D3848275EB11800F36D7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K6ATTQCYHQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyMoviesAppWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyMoviesAppWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nomanhmad.MyMoviesApp.MyMoviesAppWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		ED297E9E2731BDBE00C3448D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EDA0989D273DEC0B003C06C3 /* Keys.xcconfig */;
@@ -856,6 +1031,7 @@
 		ED297EA12731BDBE00C3448D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -889,6 +1065,7 @@
 		ED297EA22731BDBE00C3448D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1017,6 +1194,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED1D3849275EB11800F36D7B /* Build configuration list for PBXNativeTarget "MyMoviesAppWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1D3847275EB11800F36D7B /* Debug */,
+				ED1D3848275EB11800F36D7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ED297E722731BDBC00C3448D /* Build configuration list for PBXProject "MyMoviesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

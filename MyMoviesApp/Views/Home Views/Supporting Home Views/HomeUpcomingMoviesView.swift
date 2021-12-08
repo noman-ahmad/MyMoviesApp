@@ -16,7 +16,7 @@ struct HomeUpcomingMoviesView: View {
     let rowHeight = (UIScreen.screenHeight/4 - 25)
     
     var body: some View {
-        ScrollView(.vertical) {
+        ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(upcomingMoviesViewModel.upcomingMovies, id: \.self) { movie in
                     if let poster_path = movie.poster_path {

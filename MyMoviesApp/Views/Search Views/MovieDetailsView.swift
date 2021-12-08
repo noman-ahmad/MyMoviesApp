@@ -22,11 +22,17 @@ struct MovieDetailsView: View {
             if isLoading {
                 ProgressView()
             } else {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     MovieImageDescriptionView(moviePosterPath: movieDetailsViewModel.getMoviePosterPath(), movieRating: movieDetailsViewModel.getMovieRating(), movieGenres: movieDetailsViewModel.getMovieGenres(), movieYear: movieDetailsViewModel.getMovieYear(), movieRuntime: movieDetailsViewModel.getMovieRuntime(), movieDirector: movieDetailsViewModel.getMovieDirectors())
                     MovieSynopsisRow(movieDescription: movieDetailsViewModel.getMovieDescription())
                     MovieReccomendationsView(movieId: movieDetailsViewModel.getMovieId())
                     MovieCastRow(movieCast: movieDetailsViewModel.getMovieCast())
+                    
+                    if let flatrate = movieDetailsViewModel.movieWatchProviders.flatrate {
+                        if flatrate.count > 0 {
+                            MovieStreamingSitesView(streamingSites: flatrate)
+                        }
+                    }
                 }.navigationBarTitle(movieDetailsViewModel.getMovieName(), displayMode: .inline)
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
@@ -69,6 +75,10 @@ struct MovieDetailsView: View {
             }
             Task {
                 await movieDetailsViewModel.getMovieReccomendationLoader(movieId: currentMovie)
+            }
+            
+            Task {
+                await movieDetailsViewModel.getMovieWatchProvidersLoader(movieId: currentMovie)
             }
         }
     }

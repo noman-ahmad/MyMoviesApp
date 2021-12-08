@@ -39,7 +39,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-            }.navigationTitle("My Movies App")
+            }.navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

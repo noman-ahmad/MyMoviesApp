@@ -13,12 +13,27 @@ class UnwatchedMoviesViewModel : ObservableObject {
     
     init() {
         storedMovies = []
-        getAllMoviesUnwatched()
+        getAllMoviesUnwatchedName()
     }
     
-    func getAllMoviesUnwatched() {
-        storedMovies = CoreDataManager.shared.getAllMoviesUnwatched()
-        CoreDataManager.shared.save()
+    func getAllMoviesUnwatchedName() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesUnwatchedTitle()
+    }
+    
+    func getAllMoviesUnwatchedDate() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesUnwatchedDate()
+    }
+    
+    func getAllMoviesUnwatchedReleased() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesUnwatchedReleased()
+    }
+    
+    func getAllMoviesUnwatchedDirector() {
+        storedMovies.removeAll()
+        storedMovies = CoreDataManager.shared.getAllMoviesUnwatchedDirector()
     }
     
 }

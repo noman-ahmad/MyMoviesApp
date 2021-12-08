@@ -20,6 +20,7 @@ class MovieDetailsViewModel : ObservableObject {
     @Published private var movieReccomendations : [IndividualMovieResponse]
     @Published private var movieReviews : [ReviewResults]
     @Published private var movieVideos : [VideoResult]
+    @Published var movieWatchProviders : WatchProviderCountryResponse
     
     @Environment(\.managedObjectContext) private var moc
     
@@ -40,6 +41,7 @@ class MovieDetailsViewModel : ObservableObject {
         self.movieReccomendations = []
         self.movieReviews = []
         self.movieVideos = []
+        self.movieWatchProviders = WatchProviderCountryResponse()
     }
     
     
@@ -351,6 +353,38 @@ class MovieDetailsViewModel : ObservableObject {
             return to_return
         }
     }
+    
+    func getMovieWatchProviders(movieId: Int) async throws  {
+        //print("Successfully Entered Search Function")
+        // query url
+        let url = "https://api.themoviedb.org/3/movie/" + String(movieId) + "/watch/providers?api_key=" + self.apiKey!
+        print(url)
+        guard let apiUrl = URL(string: url) else {
+           // print("Error with URL")
+            throw MovieDetailsViewModelError.invalidURL
+        }
+            // fetch data using URLSession
+        let (data, _) = try await URLSession.shared.data(from: apiUrl)
+        print(data.description)
+            // parse returned api data
+        let queryResult = try JSONDecoder().decode(WatchProviderResponse.self, from: data)
+        print(queryResult)
+        DispatchQueue.main.async {
+            //self.currentMovie = queryResult
+            self.movieWatchProviders = queryResult.results.US
+        }
+
+    }
+
+    func getMovieWatchProvidersLoader(movieId: Int) async {
+        do {
+            try await getMovieWatchProviders(movieId: movieId)
+        } catch {
+            //print("Error with Movie Results Searching")
+            debugPrint(error)
+        }
+    }
+
     
     
     func saveToPersistance() {

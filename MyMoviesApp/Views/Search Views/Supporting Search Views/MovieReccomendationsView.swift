@@ -23,7 +23,7 @@ struct MovieReccomendationsView: View {
                         Text("Reccomended").font(.headline).fontWeight(.bold)
                         Spacer()
                     }
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(movieReccomendationsVieModel.getReccomendedMovies(), id: \.id) {
                                 movie in

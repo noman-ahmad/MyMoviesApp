@@ -35,7 +35,7 @@ struct HomeView: View {
                         HomePopularMoviesView()
                     }
                     Spacer()
-                }.navigationTitle(Text("My Movies App"))
+                }.navigationTitle(Text("Discover Movies"))
                     .navigationBarTitleDisplayMode(.inline)
             } .navigationViewStyle(StackNavigationViewStyle())
         }

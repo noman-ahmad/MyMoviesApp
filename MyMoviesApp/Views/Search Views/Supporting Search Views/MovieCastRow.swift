@@ -20,7 +20,7 @@ struct MovieCastRow: View {
                     Text("Cast").font(.headline).fontWeight(.bold)
                     Spacer()
                 }
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top) {
                         ForEach(movieCast, id: \.id) {
                             cast in
@@ -32,6 +32,7 @@ struct MovieCastRow: View {
                                     Image("placeholder-cast").resizable().frame(width: 90, height: 125)
                                 }
                                 HStack {
+                                    Spacer() 
                                     Text(cast.name).font(.caption2).foregroundColor(Color.secondary).lineLimit(2)
                                     Spacer()
                                 }.frame(width: 90)
