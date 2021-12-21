@@ -18,88 +18,6 @@ struct WatchedMoviesCollectionView: View {
     
     
     var body: some View {
-            HStack {
-                
-                
-                Menu {
-                    
-                    Text("Diamond: 10.0")
-                    
-                    Text("Ruby: 9.0 - 9.5")
-                    
-                    Text("Gold: 8.0 - 8.5")
-                    
-                    Text("Silver: 6.0 - 7.5")
-                    
-                    Text("Bronze: 4.0 - 5.5")
-                    
-                    Text("Rotten: 0.0 - 3.5")
-                    
-                } label : {
-                    Image(systemName: "star.fill").resizable().frame(width: 20, height: 20).foregroundColor(.primary)
-                }.padding(.leading)
-                
-                Spacer()
-                
-                Text("\(watchedViewModel.storedMovies.count) Movies Watched").font(.headline)
-                
-                Spacer()
-                
-                Menu {
-                    Button {
-                        watchedViewModel.sortDate()
-                        sortingOptionWatched = 1
-                    } label: {
-                        HStack {
-                            Text("Date Updated")
-                            Image(systemName: "calendar.badge.clock")
-                        }
-                    }
-                    
-                    Button {
-                        watchedViewModel.sortName()
-                        sortingOptionWatched = 2
-                    } label : {
-                        HStack {
-                            Text("Alphabetically")
-                            Image(systemName: "textformat.abc")
-                        }
-                    }
-                    
-                    Button {
-                        watchedViewModel.sortRating()
-                        sortingOptionWatched = 0
-                    } label : {
-                        HStack {
-                            Text("Overall Rating")
-                            Image(systemName: "star.fill").foregroundColor(Color.blue)
-                        }
-                    }
-                    
-                    Button {
-                        watchedViewModel.sortReleased()
-                        sortingOptionWatched = 3
-                    } label : {
-                        HStack {
-                            Text("Year Released")
-                            Image(systemName: "calendar.circle.fill")
-                        }
-                    }
-                    
-                    Button {
-                        watchedViewModel.sortDirector()
-                        sortingOptionWatched = 4
-                    } label : {
-                        HStack {
-                            Text("Director")
-                            Image(systemName: "person.fill")
-                        }
-                    }
-                    
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down.circle.fill").resizable().frame(width: 20, height: 20).foregroundColor(.primary)
-                }.padding(.trailing)
-            }
             List {
                 ForEach(watchedViewModel.storedMovies, id:\.id) {
                     movie in
@@ -107,9 +25,96 @@ struct WatchedMoviesCollectionView: View {
                         LibraryWatchedRow(movieEntity: movie, movieId: Int(movie.id)).background(Color.clear)
                     }
                 }
-            } .refreshable {
-                //watchedViewModel.getAllMoviesWatched()
-            } .listStyle(PlainListStyle())
+            }
+            .listStyle(PlainListStyle())
+        
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button {
+                            watchedViewModel.sortDate()
+                            sortingOptionWatched = 1
+                        } label: {
+                            HStack {
+                                Text("Date Updated")
+                                Image(systemName: "calendar.badge.clock")
+                            }
+                        }
+                        
+                        Button {
+                            watchedViewModel.sortName()
+                            sortingOptionWatched = 2
+                        } label : {
+                            HStack {
+                                Text("Alphabetically")
+                                Image(systemName: "textformat.abc")
+                            }
+                        }
+                        
+                        Button {
+                            watchedViewModel.sortRating()
+                            sortingOptionWatched = 0
+                        } label : {
+                            HStack {
+                                Text("Overall Rating")
+                                Image(systemName: "star.fill").foregroundColor(Color.blue)
+                            }
+                        }
+                        
+                        Button {
+                            watchedViewModel.sortReleased()
+                            sortingOptionWatched = 3
+                        } label : {
+                            HStack {
+                                Text("Year Released")
+                                Image(systemName: "calendar.circle.fill")
+                            }
+                        }
+                        
+                        Button {
+                            watchedViewModel.sortDirector()
+                            sortingOptionWatched = 4
+                        } label : {
+                            HStack {
+                                Text("Director")
+                                Image(systemName: "person.fill")
+                            }
+                        }
+                        
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down.circle.fill").resizable().frame(width: 20, height: 20).foregroundColor(.primary)
+                    }.padding(.trailing)
+                    
+                }
+                
+                ToolbarItem(placement: .automatic) {
+                    Menu {
+                        Section(header: Text("Statistics")) {
+                            
+                            Button {
+                                
+                            } label: {
+                                HStack {
+                                    Text("Total Movies: \(watchedViewModel.storedMovies.count)")
+                                    Image(systemName: "film.fill")
+                                }
+                            } .disabled(true)
+                            
+                            Button {
+                                
+                            } label: {
+                                HStack {
+                                    Text(String(format: "Average Rating: %.1f", watchedViewModel.getAverage()))
+                                    Image(systemName: "star.fill")
+                                }
+                            } .disabled(true)
+                        }
+                    } label : {
+                        Image(systemName: "info.circle.fill").resizable().frame(width: 20, height: 20).foregroundColor(.primary)
+                    }
+                }
+                
+            }
               .onAppear() {
                   //UITableView.appearance().contentInset.top = -35
                   

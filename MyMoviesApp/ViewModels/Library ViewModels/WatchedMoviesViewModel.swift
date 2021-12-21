@@ -44,5 +44,18 @@ class WatchedMoviesViewModel : ObservableObject {
         storedMovies.removeAll()
         storedMovies = CoreDataManager.shared.getAllMoviesWatchedDirector()
     }
+    
+    func getAverage() -> Float {
+        if storedMovies.count == 0 {
+            return 0.0
+        } else {
+            var total : Float = 0.0
+            for movie in storedMovies {
+                total = total + movie.rating
+            }
+            total = total / Float(storedMovies.count)
+            return total
+        }
+    }
 }
 

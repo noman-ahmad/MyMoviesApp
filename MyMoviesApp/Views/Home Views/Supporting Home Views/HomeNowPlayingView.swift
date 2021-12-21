@@ -19,7 +19,7 @@ struct HomeNowPlayingView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: columns, spacing: 20) {
+            LazyVGrid(columns: columns) {
                 ForEach(nowPlayingViewModel.moviesNowPlaying, id: \.self) { movie in
                     if let poster_path = movie.poster_path {
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {

@@ -17,7 +17,7 @@ struct HomeTopRatedMoviesView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: columns, spacing: 20) {
+            LazyVGrid(columns: columns) {
                 ForEach(topRatedViewModel.topRatedMovies, id: \.self) { movie in
                     if let poster_path = movie.poster_path {
                         NavigationLink(destination: MovieDetailsView(currentMovie: movie.id)) {

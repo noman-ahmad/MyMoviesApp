@@ -20,7 +20,13 @@ struct AcknowledgementView: View {
                             Spacer()
                         }
                     }
+                    
+                    VStack {
+                        Text("All Information About Showtimes and Where to Watch is Provided by JustWatch though TMDB API. Find out more at www.justwatch.com")
+                    }
                 }
+                
+                
                 Section(header: Text("Logo")) {
                     Text("App Icons were made by https://www.freepik.com from https://www.flaticon.com/. Check out their pages for more information as well as other icons and logos.")
                 }

@@ -54,11 +54,103 @@ class CoreDataManager : ObservableObject {
         }
     }
     
-    func getAllMovies() -> [StoredMovie] {
+    func getAllMoviesDate() -> [StoredMovie] {
         let fetchRequest: NSFetchRequest<StoredMovie>
         fetchRequest = StoredMovie.fetchRequest()
         
         let sortDescriptor = NSSortDescriptor(key: "date_updated", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesName() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesRating() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "overall_rating", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesDirector() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "director", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        
+        do {
+            let context = CoreDataManager.shared.viewContext
+            
+            let movieFound = try context.fetch(fetchRequest)
+            for all in movieFound {
+                print(all.id)
+            }
+            save()
+            return movieFound
+        } catch {
+            print("Error with Fetch Request \(error)")
+            return []
+        }
+    }
+    
+    func getAllMoviesReleased() -> [StoredMovie] {
+        let fetchRequest: NSFetchRequest<StoredMovie>
+        fetchRequest = StoredMovie.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "year_released", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         
