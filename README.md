@@ -8,12 +8,18 @@ MyMoviesWatchList is a lightweight & simple iOS application that is geared towar
     <img src="./MyMoviesApp/Assets/Screenshots/light1.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/light2.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/light3.png" width="100"/>
+</p>
+
+<p> 
     <img src="./MyMoviesApp/Assets/Screenshots/light4.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/dark1.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/dark2.png" width="100"/>
+</p>
+
+
+<p> 
     <img src="./MyMoviesApp/Assets/Screenshots/dark3.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/dark4.png" width="100"/>
     <img src="./MyMoviesApp/Assets/Screenshots/dark5.png" width="100"/>
 </p>
-
 
