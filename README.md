@@ -2,8 +2,14 @@
 
 <h2> About </h2> 
 
-<p> 
+<p align = "middle"> 
     My Movies Watch List is a simple and lightweight ios app geared towards movie enthusiasts. This app allows you to find movies to watch and keep track of them. 
+</p> 
+
+<p align = "middle"> 
+
+App Store Link : https://apps.apple.com/us/app/mymovieswatchlist/id1596514834
+
 </p> 
 
 
@@ -27,4 +33,17 @@
     <img src="./MyMoviesApp/Assets/Screenshots/dark4.png" width="32%"/>
     <img src="./MyMoviesApp/Assets/Screenshots/dark5.png" width="32%"/>
 </p>
+
+
+
+<h2> Technologies </h2> 
+
+<p> 
+
+Swift 5.5 
+XCode 13.1 
+SwiftUI 
+Core Data 
+
+</p> 
 
