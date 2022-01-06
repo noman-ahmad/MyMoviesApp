@@ -1,8 +1,13 @@
-# My Movie Watch List 
+<h1> My Movies Watch List </h1> 
 
-MyMoviesWatchList is a lightweight & simple iOS application that is geared towards movie enthusiasts interested in keeping track of movies and discovering new movies to watch. This app is built using SwiftUI and is available on the iOS App Store. 
+<h2> About </h2> 
+
+<p> 
+    My Movies Watch List is a simple and lightweight ios app geared towards movie enthusiasts. This app allows you to find movies to watch and keep track of them. 
+</p> 
 
 
+<h2> Screenshots </h2> 
 
 <p align="middle"> 
     <img src="./MyMoviesApp/Assets/Screenshots/light1.png" width="32%"/>
