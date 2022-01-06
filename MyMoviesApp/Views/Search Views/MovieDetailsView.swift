@@ -37,7 +37,7 @@ struct MovieDetailsView: View {
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             if currentState == true {
-                                Image(systemName: "checkmark.circle.fill")
+                                Image(systemName: "checkmark.circle.fill").foregroundColor(.primary)
                             } else {
                                 Button {
                                     print("Tapped Here")

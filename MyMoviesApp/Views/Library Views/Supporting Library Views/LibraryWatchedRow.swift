@@ -54,6 +54,11 @@ struct LibraryWatchedRow: View {
                     if movieEntity.rating == 10.0 {
                         Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.6, green: 0.83, blue: 1))
                     }
+                    
+                    else if movieEntity.rating >= 9.0 {
+                        Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.3608, green: 0.3137, blue: 0.502))
+                    }
+                    
                     else if movieEntity.rating >= 8.0 {
         
                         Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.9059, green: 0.7412, blue: 0.2588))
@@ -62,7 +67,7 @@ struct LibraryWatchedRow: View {
                     else if movieEntity.rating >= 6.5 {
                         Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.7098, green: 0.7098, blue: 0.7412))
                     }
-                    else if movieEntity.rating >= 5.0 {
+                    else if movieEntity.rating >= 4.0 {
                         Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.5765, green: 0.40, blue: 0.2784))
                     } else {
                         Image(systemName: "star.fill").resizable().frame(width: 13.5, height: 13.5).foregroundColor(Color(red: 0.678, green: 1.0, blue: 0.184))
